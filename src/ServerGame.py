@@ -17,11 +17,22 @@ class ServerGame:
         self.desc_field = ""
         self.players = {}
         self.tf = text_filter
+        self.chat = []
 
     def add_player(self):
         new_player = ClientPlayer()
         self.players[new_player.id] = new_player
         return new_player.id
+
+    def delete_player(self, player_id):
+        if player_id not in self.players.keys():
+            return True
+        del self.players[player_id]
+        if len(self.players.keys()) == 0:
+            return False
+        if self.active_player == player_id:
+            self.active_player = self.players.keys()[0]
+        return True
 
     def get_desc(self):
         return self.desc_field
@@ -36,4 +47,10 @@ class ServerGame:
             (guess_word == self.target_word):
             return True
         return False
-            
+    
+    def get_game_state(self):
+        return {
+            "active_player": self.active_player,
+            "desc_field": self.desc_field,
+            "chat": self.chat 
+        } 
