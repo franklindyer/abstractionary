@@ -1,11 +1,52 @@
 <head>
+    <style>
+        .game-text-box {
+            width: 49%;
+            display: inline-block;
+            font-family: Courier;
+            height: 200px;
+        }
+    </style>
 </head>
 
 <body>
     <h1>Abstractionary game</h1>
     <p>Here is a <a href="/join/{{game_id}}">shareable join link</a> for this game.</p>
     <p>Here we go!</p>
+    <div>
+        <textarea class="game-text-box" id="player-input">A monad is just a monoid in the category of endofunctors.</textarea>
+        <textarea class="game-text-box" id="player-output" readonly></textarea>
+    </div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js" integrity="sha512-q/dWJ3kcmjBLU4Qc47E4A9kTB4m3wuTY7vkFJDTZKjTs8jhyGQnaUrxa0Ytd0ssMZhbNua9hE+E7Qv1j+DyZwA==" crossorigin="anonymous"></script>
 <script>
     console.log("Hello, world!")
+
+    const get_cookie = (name) => {
+        return document.cookie.split('; ').reduce((r, v) => {
+            const parts = v.split('=')
+            return parts[0] === name ? decodeURIComponent(parts[1]) : r
+        }, '')
+    }
+
+    function state_update_loop(sock) {
+        var state = {
+            "player_id": get_cookie("player_id"),
+            "desc_field": document.getElementById("player-input").value,
+        };
+        var state_string = JSON.stringify(state);
+        sock.emit('gamemsg', { data: state_string });
+        setTimeout(() => { state_update_loop(sock); }, 500);
+    }
+    
+    var socket = io(); 
+    socket.on('connect', () => {
+        state_update_loop(socket);
+    });
+    socket.on('gamemsg', (data) => {
+        var data_dict = JSON.parse(data);
+        document.getElementById("player-output").textContent = data_dict["desc_field"];
+    });
+
 </script>
 </body>

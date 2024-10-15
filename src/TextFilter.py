@@ -48,7 +48,7 @@ class TextFilter:
         return tokens
 
     def translate_text(self, tokens):
-        print([tt.body for tt in tokens])
+        # print([tt.body for tt in tokens])
         return [TextToken(self.wt.translate(tt.body), pre=tt.pre, post=tt.post) 
                 if (self.wr.lookup_index(tt.body) or math.inf) > self.rank_bound
                 else tt 

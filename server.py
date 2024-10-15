@@ -1,5 +1,6 @@
 from flask import Flask, make_response, redirect, render_template, request
-from flask_socketio import SocketIO
+from flask_socketio import emit, SocketIO
+import json
 
 import sys
 
@@ -34,15 +35,15 @@ def serve_new_game():
     game_map[new_game.id] = new_game
     player_id = new_game.add_player()
     player_to_game_map[player_id] = new_game
-    response.set_cookie("player", player_id)
+    response.set_cookie("player_id", player_id)
     return response
 
 @app.route('/join/<game_id>')
 def serve_join_game(game_id):
     if not game_id in game_map.keys():
         return make_response(redirect('/'))
-    if "player" in request.cookies:
-        prev_id = request.cookies["player"]
+    if "player_id" in request.cookies:
+        prev_id = request.cookies["player_id"]
         if prev_id in player_to_game_map:
             player_to_game_map[prev_id].delete_player()
             del player_to_game_map[prev_id]
@@ -50,14 +51,14 @@ def serve_join_game(game_id):
     player_id = game.add_player()
     player_to_game_map[player_id] = game
     response = make_response(redirect('/game'))
-    response.set_cookie("player", player_id)
+    response.set_cookie("player_id", player_id)
     return response
 
 @app.route('/game')
 def serve_game():
-    if not "player" in request.cookies:
+    if not "player_id" in request.cookies:
         return make_response(redirect('/'))
-    player_id = request.cookies["player"]
+    player_id = request.cookies["player_id"]
     if not player_id in player_to_game_map:
         return make_response(redirect('/'))
     game = player_to_game_map[player_id]
@@ -76,10 +77,16 @@ def serve_game():
  
 @socketio.on('connect')
 def socket_connect():
-    print("NOT IMPLEMENTED")
+    print("CLIENT IS CONNECTED")
 
-@socketio.on('message')
+@socketio.on('gamemsg')
 def socket_message(data):
-    print("NOT IMPLEMENTED")
+    client_state = json.loads(data["data"])
+    if "player_id" not in client_state or client_state["player_id"] not in player_to_game_map:
+        print("ERROR: Player identity not found in socket message.")
+        return
+    game = player_to_game_map[client_state["player_id"]]
+    game.receive_client_state(request.sid, client_state)
+    emit('gamemsg', json.dumps(game.get_game_state()))
 
-app.run()
+app.run(host='0.0.0.0', port=5001)

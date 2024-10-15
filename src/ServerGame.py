@@ -7,6 +7,7 @@ def rand_string(n):
 class ClientPlayer:
     def __init__(self):
         self.id = rand_string(20)
+        self.sock_id = None
         self.points = 0
 
 class ServerGame:
@@ -22,6 +23,8 @@ class ServerGame:
     def add_player(self):
         new_player = ClientPlayer()
         self.players[new_player.id] = new_player
+        if self.active_player == "":
+            self.active_player = new_player.id
         return new_player.id
 
     def delete_player(self, player_id):
@@ -39,7 +42,7 @@ class ServerGame:
 
     def update_desc(self, player_id, new_desc):
         if player_id == self.active_player:
-            self.desc_field = tf.filter(new_desc)
+            self.desc_field = self.tf.filter(new_desc)
 
     def guess_word(self, player_id, guess_word):
         if (player_id != self.active_player) and \
@@ -47,10 +50,21 @@ class ServerGame:
             (guess_word == self.target_word):
             return True
         return False
-    
+   
+    def receive_client_state(self, sid, state):
+        player_id = state["player_id"]
+        if player_id not in self.players:
+            return
+        player = self.players[player_id]
+        player.sock_id = sid
+        if player_id == self.active_player:
+            # print(f"Got client text: {state['desc_field']}")
+            self.update_desc(player_id, state["desc_field"])
+ 
     def get_game_state(self):
         return {
             "active_player": self.active_player,
+            "num_players": len(self.players.keys()),
             "desc_field": self.desc_field,
-            "chat": self.chat 
+            "chat": self.chat, 
         } 
