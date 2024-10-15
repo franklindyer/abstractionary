@@ -12,9 +12,9 @@ class FakeWordTranslator:
         self.fakelist = ["squanch"]
         self.wordmap = {}
 
-    def ingest_fake_words(self, wordlist):
-        self.fakelist = open(wordlist, 'r').readlines()
-        self.fakelist = random.shuffle(self.fakelist)
+    def ingest_data(self, wordlist):
+        self.fakelist = [ln.strip() for ln in open(wordlist, 'r').readlines()]
+        random.shuffle(self.fakelist)
 
     def translate(self, word):
         if not word in self.wordmap.keys():

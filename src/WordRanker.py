@@ -11,7 +11,10 @@ class WordRanker:
                 index = int(ln_parts[0])-100
                 if index < 0:
                     continue
-                self.data[ln_parts[1]] = index
+                if ln_parts[1].lower() in self.data.keys():
+                    continue
+                self.data[ln_parts[1].lower()] = index
 
     def lookup_index(self, word):
-        return self.data.get(word)
+        res = self.data.get(word)
+        return res
