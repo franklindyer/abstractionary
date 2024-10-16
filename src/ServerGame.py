@@ -7,6 +7,7 @@ def rand_string(n):
 class ClientPlayer:
     def __init__(self):
         self.id = rand_string(20)
+        self.name = "Anon"
         self.sock_id = None
         self.points = 0
 
@@ -28,7 +29,7 @@ class ServerGame:
         return new_player.id
 
     def delete_player(self, player_id):
-        if player_id not in self.players.keys():
+        if player_id not in self.players:
             return True
         del self.players[player_id]
         if len(self.players.keys()) == 0:
@@ -57,6 +58,8 @@ class ServerGame:
             return
         player = self.players[player_id]
         player.sock_id = sid
+        if player.name == "Anon" and state["player_name"] != "":
+            player.name = state["player_name"]
         if player_id == self.active_player:
             # print(f"Got client text: {state['desc_field']}")
             self.update_desc(player_id, state["desc_field"])
@@ -66,5 +69,9 @@ class ServerGame:
             "active_player": self.active_player,
             "num_players": len(self.players.keys()),
             "desc_field": self.desc_field,
-            "chat": self.chat, 
-        } 
+            "chat": self.chat[::-1], 
+        }
+
+    def receive_chat(self, id, chat_msg):
+        self.chat = [(self.players[id].name, chat_msg)] + self.chat
+        self.chat = self.chat[:20]

@@ -4,7 +4,16 @@
             width: 49%;
             display: inline-block;
             font-family: Courier;
+            font-size: 16px;
             height: 200px;
+        }
+
+        #player-chat {
+            width: 50%;
+            margin: auto;
+            font-family: Courier;
+            font-size: 16px;
+            white-space: pre-wrap;
         }
     </style>
 </head>
@@ -15,12 +24,16 @@
     <p>Here we go!</p>
     <div>
         <textarea class="game-text-box" id="player-input">A monad is just a monoid in the category of endofunctors.</textarea>
-        <textarea class="game-text-box" id="player-output" readonly></textarea>
+        <textarea class="game-text-box" id="player-output"></textarea>
+        <input type="text" id="chat-input"></input>
+        <div id="player-chat"></div>
     </div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js" integrity="sha512-q/dWJ3kcmjBLU4Qc47E4A9kTB4m3wuTY7vkFJDTZKjTs8jhyGQnaUrxa0Ytd0ssMZhbNua9hE+E7Qv1j+DyZwA==" crossorigin="anonymous"></script>
 <script>
     console.log("Hello, world!")
+
+    chat_input = document.getElementById("chat-input");
 
     const get_cookie = (name) => {
         return document.cookie.split('; ').reduce((r, v) => {
@@ -29,9 +42,14 @@
         }, '')
     }
 
+    if (get_cookie("name") === "") {
+        document.cookie = `name=${window.prompt("What is your nickname?")}`;
+    }
+
     function state_update_loop(sock) {
         var state = {
             "player_id": get_cookie("player_id"),
+            "player_name": get_cookie("name"),
             "desc_field": document.getElementById("player-input").value,
         };
         var state_string = JSON.stringify(state);
@@ -46,7 +64,19 @@
     socket.on('gamemsg', (data) => {
         var data_dict = JSON.parse(data);
         document.getElementById("player-output").textContent = data_dict["desc_field"];
+        document.getElementById("player-chat").innerHTML
+            = Array.from(data_dict["chat"]).reduce((acc, cur) => `<b>${cur[0]}:</b> ${cur[1]}` + "\n" + acc, "");
     });
+    chat_input.onkeydown = (e) => {
+        if (e.keyCode === 13) {
+            socket.emit('chat', { data: JSON.stringify({ 
+                    player_id: get_cookie("player_id"),
+                    chat_msg: chat_input.value,
+                })
+            });
+            chat_input.value = "";
+        }
+    };
 
 </script>
 </body>

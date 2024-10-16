@@ -13,8 +13,6 @@ from WordRanker import *
 
 wr = WordRanker()
 wr.ingest_data("data/eng_news_2023_10K-words.txt")
-wt = FakeWordTranslator()
-wt.ingest_data("data/refined_non_english_words.txt")
 
 game_map = {}
 player_to_game_map = {}
@@ -29,6 +27,8 @@ def serve_index():
 @app.route('/newgame')
 def serve_new_game():
     response = make_response(redirect('/game'))
+    wt = FakeWordTranslator()
+    wt.ingest_data("data/refined_non_english_words.txt")
     text_filter = TextFilter(wr, wt)
     text_filter.rank_bound = 2000
     new_game = ServerGame(text_filter)
@@ -45,7 +45,7 @@ def serve_join_game(game_id):
     if "player_id" in request.cookies:
         prev_id = request.cookies["player_id"]
         if prev_id in player_to_game_map:
-            player_to_game_map[prev_id].delete_player()
+            player_to_game_map[prev_id].delete_player(prev_id)
             del player_to_game_map[prev_id]
     game = game_map[game_id]
     player_id = game.add_player()
@@ -88,5 +88,15 @@ def socket_message(data):
     game = player_to_game_map[client_state["player_id"]]
     game.receive_client_state(request.sid, client_state)
     emit('gamemsg', json.dumps(game.get_game_state()))
+
+@socketio.on('chat')
+def socket_chat(data):
+    client_msg = json.loads(data["data"])
+    if "player_id" not in client_msg or client_msg["player_id"] not in player_to_game_map:
+        print("ERROR: Player identity not found in socket message.")
+        return
+    player_id = client_msg["player_id"]
+    game = player_to_game_map[player_id]
+    game.receive_chat(player_id, client_msg["chat_msg"])
 
 app.run(host='0.0.0.0', port=5001)
