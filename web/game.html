@@ -22,6 +22,7 @@
     <h1>Abstractionary game</h1>
     <p>Here is a <a href="/join/{{game_id}}">shareable join link</a> for this game.</p>
     <p>Here we go!</p>
+    <p id="active-player-hint"></p>
     <div>
         <textarea class="game-text-box" id="player-input">A monad is just a monoid in the category of endofunctors.</textarea>
         <textarea class="game-text-box" id="player-output"></textarea>
@@ -33,7 +34,10 @@
 <script>
     console.log("Hello, world!")
 
+    player_input = document.getElementById("player-input");
+    player_output = document.getElementById("player-output");
     chat_input = document.getElementById("chat-input");
+    player_hint = document.getElementById("active-player-hint");
 
     const get_cookie = (name) => {
         return document.cookie.split('; ').reduce((r, v) => {
@@ -65,7 +69,17 @@
         var data_dict = JSON.parse(data);
         document.getElementById("player-output").textContent = data_dict["desc_field"];
         document.getElementById("player-chat").innerHTML
-            = Array.from(data_dict["chat"]).reduce((acc, cur) => `<b>${cur[0]}:</b> ${cur[1]}` + "\n" + acc, "");
+            = Array.from(data_dict["chat"]).reduce((acc, cur) => `<b>${cur[0]}</b> ${cur[1]}` + "\n" + acc, "");
+        if ("target_word" in data_dict) {
+            player_hint.innerHTML 
+                = `It's your turn to be The Illiterate! Your word is: <b>${data_dict["target_word"]}</b>`;
+            player_input.disabled = false;
+            chat_input.disabled = true; 
+        } else {
+            player_hint.innerHTML = "Try and guess the word being described.";
+            player_input.disabled = true; 
+            chat_input.disabled = false; 
+        }
     });
     chat_input.onkeydown = (e) => {
         if (e.keyCode === 13) {

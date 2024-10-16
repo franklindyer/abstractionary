@@ -10,12 +10,21 @@ from ServerGame import *
 from TextFilter import *
 from WordTranslator import *
 from WordRanker import *
+from WordGenerator import *
 
 wr = WordRanker()
 wr.ingest_data("data/eng_news_2023_10K-words.txt")
 
 game_map = {}
 player_to_game_map = {}
+
+def build_new_game():
+    wt = FakeWordTranslator()
+    wt.ingest_data("data/refined_non_english_words.txt")
+    text_filter = TextFilter(wr, wt)
+    text_filter.rank_bound = 2000
+    word_generator = FreqWordGenerator(wr)
+    return ServerGame(text_filter, word_generator)
 
 app = Flask(__name__, template_folder="./web")
 socketio = SocketIO(app)
@@ -27,11 +36,7 @@ def serve_index():
 @app.route('/newgame')
 def serve_new_game():
     response = make_response(redirect('/game'))
-    wt = FakeWordTranslator()
-    wt.ingest_data("data/refined_non_english_words.txt")
-    text_filter = TextFilter(wr, wt)
-    text_filter.rank_bound = 2000
-    new_game = ServerGame(text_filter)
+    new_game = build_new_game()
     game_map[new_game.id] = new_game
     player_id = new_game.add_player()
     player_to_game_map[player_id] = new_game
@@ -64,17 +69,6 @@ def serve_game():
     game = player_to_game_map[player_id]
     return render_template("game.html", game_id = game.id)
 
-# Valid message types from server to client:
-# - DESC (clue description updated)
-# - CHAT (new chat message)
-# - UWIN (your guess was correct)
-# - HOST (it is your turn to be the describer)
-#
-# Valid message types from client to server:
-# - GUES (take a guess at the word)
-# - DESC (update the description clue)
-# - CHAT (new chat message from this user)
- 
 @socketio.on('connect')
 def socket_connect():
     print("CLIENT IS CONNECTED")
@@ -85,9 +79,10 @@ def socket_message(data):
     if "player_id" not in client_state or client_state["player_id"] not in player_to_game_map:
         print("ERROR: Player identity not found in socket message.")
         return
-    game = player_to_game_map[client_state["player_id"]]
+    player_id = client_state["player_id"]
+    game = player_to_game_map[player_id]
     game.receive_client_state(request.sid, client_state)
-    emit('gamemsg', json.dumps(game.get_game_state()))
+    emit('gamemsg', json.dumps(game.get_game_state(player_id)))
 
 @socketio.on('chat')
 def socket_chat(data):

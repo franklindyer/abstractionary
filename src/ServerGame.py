@@ -12,41 +12,53 @@ class ClientPlayer:
         self.points = 0
 
 class ServerGame:
-    def __init__(self, text_filter):
+    def __init__(self, text_filter, word_generator):
         self.id = rand_string(20)
-        self.active_player = ""
-        self.target_word = ""
+        self.active_player_index = 0
         self.desc_field = ""
+        self.player_list = []
         self.players = {}
         self.tf = text_filter
+        self.wg = word_generator
         self.chat = []
+        self.generate_word()
+
+    def active_player(self):
+        return self.player_list[self.active_player_index]
 
     def add_player(self):
         new_player = ClientPlayer()
         self.players[new_player.id] = new_player
-        if self.active_player == "":
-            self.active_player = new_player.id
+        self.player_list = self.player_list + [new_player.id]
         return new_player.id
 
+    def next_player(self):
+        self.active_player_index = (self.active_player_index+1) % len(self.player_list)
+        self.generate_word()
+
     def delete_player(self, player_id):
+        self.player_list.remove(player_id)
         if player_id not in self.players:
             return True
         del self.players[player_id]
         if len(self.players.keys()) == 0:
             return False
-        if self.active_player == player_id:
-            self.active_player = self.players.keys()[0]
+        if self.active_player_index > len(self.player_list):
+            self.active_player_index = self.active_player_id % len(self.player_list)
         return True
 
     def get_desc(self):
         return self.desc_field
 
     def update_desc(self, player_id, new_desc):
-        if player_id == self.active_player:
+        if player_id == self.active_player():
             self.desc_field = self.tf.filter(new_desc)
 
+    def generate_word(self):
+        self.target_word = self.wg.gen_word()
+
     def guess_word(self, player_id, guess_word):
-        if (player_id != self.active_player) and \
+        if (player_id != self.active_player()) and \
             (player_id in self.players.keys()) and \
             (guess_word == self.target_word):
             return True
@@ -60,18 +72,26 @@ class ServerGame:
         player.sock_id = sid
         if player.name == "Anon" and state["player_name"] != "":
             player.name = state["player_name"]
-        if player_id == self.active_player:
+        if player_id == self.active_player():
             # print(f"Got client text: {state['desc_field']}")
             self.update_desc(player_id, state["desc_field"])
  
-    def get_game_state(self):
-        return {
-            "active_player": self.active_player,
+    def get_game_state(self, player_id):
+        game_state = {
+            "active_player": self.active_player(),
             "num_players": len(self.players.keys()),
             "desc_field": self.desc_field,
             "chat": self.chat[::-1], 
         }
+        if player_id == self.active_player():
+            print(f"Giving target word to {player_id}")
+            game_state["target_word"] = self.target_word
+        return game_state
 
     def receive_chat(self, id, chat_msg):
-        self.chat = [(self.players[id].name, chat_msg)] + self.chat
+        if chat_msg.lower() == self.target_word:
+            self.chat = [("", f"Player {self.players[id].name} has guessed the word!")] + self.chat
+            self.next_player()
+        else:
+            self.chat = [(self.players[id].name, chat_msg)] + self.chat
         self.chat = self.chat[:20]
