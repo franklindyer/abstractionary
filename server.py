@@ -18,12 +18,12 @@ wr.ingest_data("data/eng_news_2023_10K-words.txt")
 game_map = {}
 player_to_game_map = {}
 
-def build_new_game():
+def build_new_game(category_list):
     wt = FakeWordTranslator()
     wt.ingest_data("data/refined_non_english_words.txt")
     text_filter = TextFilter(wr, wt)
     text_filter.rank_bound = 2000
-    word_generator = FreqWordGenerator(wr)
+    word_generator = CombinedWordGenerator(category_list)
     return ServerGame(text_filter, word_generator)
 
 app = Flask(__name__, template_folder="./web")
@@ -36,7 +36,7 @@ def serve_index():
 @app.route('/newgame')
 def serve_new_game():
     response = make_response(redirect('/game'))
-    new_game = build_new_game()
+    new_game = build_new_game(request.args.to_dict().keys())
     game_map[new_game.id] = new_game
     player_id = new_game.add_player()
     player_to_game_map[player_id] = new_game
@@ -77,7 +77,7 @@ def socket_connect():
 def socket_message(data):
     client_state = json.loads(data["data"])
     if "player_id" not in client_state or client_state["player_id"] not in player_to_game_map:
-        print("ERROR: Player identity not found in socket message.")
+        # print("ERROR: Player identity not found in socket message.")
         return
     player_id = client_state["player_id"]
     game = player_to_game_map[player_id]
@@ -88,7 +88,7 @@ def socket_message(data):
 def socket_chat(data):
     client_msg = json.loads(data["data"])
     if "player_id" not in client_msg or client_msg["player_id"] not in player_to_game_map:
-        print("ERROR: Player identity not found in socket message.")
+        # print("ERROR: Player identity not found in socket message.")
         return
     player_id = client_msg["player_id"]
     game = player_to_game_map[player_id]

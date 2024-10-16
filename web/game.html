@@ -25,7 +25,7 @@
     <p id="active-player-hint"></p>
     <div>
         <textarea class="game-text-box" id="player-input">A monad is just a monoid in the category of endofunctors.</textarea>
-        <textarea class="game-text-box" id="player-output"></textarea>
+        <textarea class="game-text-box" id="player-output" disabled></textarea>
         <input type="text" id="chat-input"></input>
         <div id="player-chat"></div>
     </div>
@@ -37,6 +37,7 @@
     player_input = document.getElementById("player-input");
     player_output = document.getElementById("player-output");
     chat_input = document.getElementById("chat-input");
+    chat_output = document.getElementById("player-chat")
     player_hint = document.getElementById("active-player-hint");
 
     const get_cookie = (name) => {
@@ -67,16 +68,25 @@
     });
     socket.on('gamemsg', (data) => {
         var data_dict = JSON.parse(data);
-        document.getElementById("player-output").textContent = data_dict["desc_field"];
-        document.getElementById("player-chat").innerHTML
-            = Array.from(data_dict["chat"]).reduce((acc, cur) => `<b>${cur[0]}</b> ${cur[1]}` + "\n" + acc, "");
+        player_output.textContent = data_dict["desc_field"];
+        chat_output.innerHTML = "";
+        for (var cur of data_dict["chat"]) {
+            var p = document.createElement('p');
+            if (cur[0] == "WIN") {
+                p.textContent = cur[2];
+                p.style.color = "green";
+            } else {
+                p.textContent = `${cur[1]} guessed "${cur[2]}"`;
+            }
+            chat_output.appendChild(p);
+        }
         if ("target_word" in data_dict) {
             player_hint.innerHTML 
                 = `It's your turn to be The Illiterate! Your word is: <b>${data_dict["target_word"]}</b>`;
             player_input.disabled = false;
             chat_input.disabled = true; 
         } else {
-            player_hint.innerHTML = "Try and guess the word being described.";
+            player_hint.innerHTML = `${data_dict["describer"]} is The Illiterate. Try and guess the word they are describing.`;
             player_input.disabled = true; 
             chat_input.disabled = false; 
         }

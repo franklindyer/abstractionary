@@ -81,17 +81,18 @@ class ServerGame:
             "active_player": self.active_player(),
             "num_players": len(self.players.keys()),
             "desc_field": self.desc_field,
-            "chat": self.chat[::-1], 
+            "chat": self.chat,
+            "describer": self.players[self.active_player()].name,
         }
         if player_id == self.active_player():
-            print(f"Giving target word to {player_id}")
             game_state["target_word"] = self.target_word
         return game_state
 
     def receive_chat(self, id, chat_msg):
         if chat_msg.lower() == self.target_word:
-            self.chat = [("", f"Player {self.players[id].name} has guessed the word!")] + self.chat
+            self.chat = [("WIN", "", f"Player {self.players[id].name} has guessed the word: {self.target_word}!")] + self.chat
             self.next_player()
+            print(f"Player {id} has guessed the word.")
         else:
-            self.chat = [(self.players[id].name, chat_msg)] + self.chat
+            self.chat = [("MSG", self.players[id].name, chat_msg)] + self.chat
         self.chat = self.chat[:20]
