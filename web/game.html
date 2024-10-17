@@ -86,6 +86,7 @@
     socket.on('gamemsg', (data) => {
         var data_dict = JSON.parse(data);
         player_output.textContent = data_dict["desc_field"];
+        player_output.scrollTop = player_output.scrollHeight;
         chat_output.innerHTML = "";
         for (var cur of data_dict["chat"]) {
             var p = document.createElement('a');
@@ -112,6 +113,7 @@
             chat_input.disabled = true; 
         } else {
             player_hint.innerHTML = `${data_dict["describer"]} is The Illiterate. Try and guess the word they are describing.`;
+            player_input.value = "";
             player_input.disabled = true; 
             chat_input.disabled = false; 
         }
