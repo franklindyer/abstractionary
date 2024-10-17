@@ -10,10 +10,19 @@
 
         #player-chat {
             width: 50%;
+            height: 100px;
             margin: auto;
             font-family: Courier;
             font-size: 16px;
             white-space: pre-wrap;
+            border-radius: 2px;
+            border: 2px solid gray;
+            display: block;
+        }
+
+        #chat-section-container {
+            margin: 5px;
+            text-align: center;
         }
     </style>
 </head>
@@ -27,7 +36,10 @@
         <textarea class="game-text-box" id="player-input">A monad is just a monoid in the category of endofunctors.</textarea>
         <textarea class="game-text-box" id="player-output" disabled></textarea>
         <input type="text" id="chat-input"></input>
-        <div id="player-chat"></div>
+        <div id="chat-section-container">
+            <a id="player-count"></a>
+            <div id="player-chat"></div>
+        </div>
     </div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js" integrity="sha512-q/dWJ3kcmjBLU4Qc47E4A9kTB4m3wuTY7vkFJDTZKjTs8jhyGQnaUrxa0Ytd0ssMZhbNua9hE+E7Qv1j+DyZwA==" crossorigin="anonymous"></script>
@@ -39,6 +51,7 @@
     chat_input = document.getElementById("chat-input");
     chat_output = document.getElementById("player-chat")
     player_hint = document.getElementById("active-player-hint");
+    player_count = document.getElementById("player-count");
 
     const get_cookie = (name) => {
         return document.cookie.split('; ').reduce((r, v) => {
@@ -71,7 +84,8 @@
         player_output.textContent = data_dict["desc_field"];
         chat_output.innerHTML = "";
         for (var cur of data_dict["chat"]) {
-            var p = document.createElement('p');
+            var p = document.createElement('a');
+            p.style.display = "block";
             if (cur[0] == "WIN") {
                 p.textContent = cur[2];
                 p.style.color = "green";
@@ -80,6 +94,13 @@
             }
             chat_output.appendChild(p);
         }
+
+        player_count.textContent = "Players present: ";
+        for (var name of data_dict["player_names"]) {
+            player_count.textContent = player_count.textContent + name + ", ";
+        }
+        player_count.textContent = player_count.textContent.slice(0,-2);
+
         if ("target_word" in data_dict) {
             player_hint.innerHTML 
                 = `It's your turn to be The Illiterate! Your word is: <b>${data_dict["target_word"]}</b>`;

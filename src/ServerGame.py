@@ -80,6 +80,7 @@ class ServerGame:
         game_state = {
             "active_player": self.active_player(),
             "num_players": len(self.players.keys()),
+            "player_names": [self.players[id].name for id in self.player_list],
             "desc_field": self.desc_field,
             "chat": self.chat,
             "describer": self.players[self.active_player()].name,
