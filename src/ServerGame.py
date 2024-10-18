@@ -1,6 +1,10 @@
 import random
 import string
 
+DESC_LENGTH_LIMIT = 10000
+NAME_LENGTH_LIMIT = 10
+CHAT_LENGTH_LIMIT = 100
+
 def rand_string(n):
     return ''.join(random.choice(string.ascii_uppercase + string.digits) for _ in range(n))
 
@@ -73,10 +77,10 @@ class ServerGame:
         player = self.players[player_id]
         player.sock_id = sid
         if player.name == "Anon" and state["player_name"] != "":
-            player.name = state["player_name"]
+            player.name = state["player_name"][:NAME_LENGTH_LIMIT]
         if player_id == self.active_player():
             # print(f"Got client text: {state['desc_field']}")
-            self.update_desc(player_id, state["desc_field"])
+            self.update_desc(player_id, state["desc_field"][:DESC_LENGTH_LIMIT])
  
     def get_game_state(self, player_id):
         game_state = {
@@ -92,6 +96,7 @@ class ServerGame:
         return game_state
 
     def receive_chat(self, id, chat_msg):
+        chat_msg = chat_msg[:CHAT_LENGTH_LIMIT]
         if chat_msg.lower() == self.target_word:
             self.chat = [("WIN", "", f"Player {self.players[id].name} has guessed the word: {self.target_word}!")] + self.chat
             self.next_player()
