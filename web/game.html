@@ -38,7 +38,7 @@
     <p>Here we go!</p>
     <p id="active-player-hint"></p>
     <div>
-        <textarea class="game-text-box" id="player-input">A monad is just a monoid in the category of endofunctors.</textarea>
+        <textarea class="game-text-box" id="player-input" disabled>A monad is just a monoid in the category of endofunctors.</textarea>
         <textarea class="game-text-box" id="player-output" disabled></textarea>
         <input type="text" id="chat-input"></input>
         <div id="chat-section-container">
@@ -110,8 +110,9 @@
         if ("target_word" in data_dict) {
             player_hint.innerHTML 
                 = `It's your turn to be The Illiterate! Your word is: <b>${data_dict["target_word"]}</b>`;
+            if (player_input.disabled)
+                player_input.value = `my word is "${data_dict['target_word']}"`;
             player_input.disabled = false;
-            player_input.value = `my word is "${data_dict['target_word']}"`
             chat_input.disabled = true; 
         } else {
             player_hint.innerHTML = `${data_dict["describer"]} is The Illiterate. Try and guess the word they are describing.`;
