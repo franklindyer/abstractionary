@@ -5,12 +5,20 @@
             display: inline-block;
             font-family: Courier;
             font-size: 16px;
-            height: 200px;
+            height: 100px;
+        }
+
+        .chat-message {
+            padding: 2px;
+        }
+
+        .highlighted-chat-message {
+            background-color: lightblue;
         }
 
         #player-chat {
             width: 50%;
-            height: 200px;
+            height: 300px;
             margin-left: auto;
             margin-right: auto;
             margin-top: 10px;
@@ -22,7 +30,7 @@
             display: block;
             text-align: left;
             padding: 4px;
-            overflow: hidden;
+            overflow: scroll;
         }
 
         #chat-section-container {
@@ -101,6 +109,10 @@
                 a = document.createElement('a');
                 a.textContent = `: ${cur[2]}`;
                 p.appendChild(b); p.appendChild(a);
+                p.classList.add("chat-message");
+                if (cur[0] == "HINT") {
+                    p.classList.add("highlighted-chat-message");
+                }
 //                p. = `${cur[1]} guessed "${cur[2]}"`;
             }
             chat_output.appendChild(p);
@@ -122,7 +134,8 @@
         } else {
             player_hint.innerHTML = `${data_dict["describer"]} is The Illiterate. Try and guess the word they are describing.`;
             player_input.value = "";
-            player_input.disabled = true; 
+            player_input.disabled = true;
+            player_output.value = ""; 
             chat_input.disabled = false; 
         }
     });
@@ -134,6 +147,16 @@
                 })
             });
             chat_input.value = "";
+        }
+    };
+    player_input.onkeydown = (e) => {
+        if (e.keyCode === 13) {
+            socket.emit('chat', { data: JSON.stringify({ 
+                    player_id: get_cookie("player_id"),
+                    chat_msg: player_input.value,
+                })
+            });
+            player_input.value = "";
         }
     };
 

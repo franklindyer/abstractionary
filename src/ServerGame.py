@@ -4,6 +4,7 @@ import string
 DESC_LENGTH_LIMIT = 10000
 NAME_LENGTH_LIMIT = 10
 CHAT_LENGTH_LIMIT = 100
+CHAT_LIMIT = 50
 
 def rand_string(n):
     return ''.join(random.choice(string.ascii_uppercase + string.digits) for _ in range(n))
@@ -87,20 +88,22 @@ class ServerGame:
             "active_player": self.active_player(),
             "num_players": len(self.players.keys()),
             "player_names": [self.players[id].name for id in self.player_list],
-            "desc_field": self.desc_field,
             "chat": self.chat,
             "describer": self.players[self.active_player()].name,
         }
         if player_id == self.active_player():
             game_state["target_word"] = self.target_word
+            game_state["desc_field"] = self.desc_field
         return game_state
 
     def receive_chat(self, id, chat_msg):
         chat_msg = chat_msg[:CHAT_LENGTH_LIMIT]
-        if chat_msg.lower() == self.target_word:
+        if id == self.active_player():
+            self.chat = [("HINT", self.players[id].name, self.tf.filter(chat_msg))] + self.chat
+        elif chat_msg.lower() == self.target_word:
             self.chat = [("WIN", "", f"Player {self.players[id].name} has guessed the word: {self.target_word}!")] + self.chat
             self.next_player()
             print(f"Player {id} has guessed the word.")
         else:
             self.chat = [("MSG", self.players[id].name, chat_msg)] + self.chat
-        self.chat = self.chat[:20]
+        self.chat = self.chat[:CHAT_LIMIT]
