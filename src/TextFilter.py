@@ -24,12 +24,26 @@ class TextToken:
             post = c + post
         return TextToken(s[len(pre):(len(s)-len(post))], pre=pre, post=post)
 
+difficulty_map = {
+    "easy": 3000,
+    "medium": 2000,
+    "hard": 1000,
+    "insane": 300,
+    "impossible": 100,
+    "default": 2000
+}
+
 class TextFilter:
     def __init__(self, word_ranker, word_translator):
         self.wr = word_ranker
         self.blacklist = []
         self.wt = word_translator        
         self.rank_bound = -1
+
+    def set_difficulty(self, diff_string):
+        self.rank_bound = difficulty_map.get(diff_string)
+        if self.rank_bound == None:
+            self.rank_bound = difficult_map["default"]
 
     def filter(self, txt):
         return self.reassemble_text(self.translate_text(self.tokenize_text(txt)))

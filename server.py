@@ -18,11 +18,11 @@ wr.ingest_data("data/google-10000-english-usa.txt")
 game_map = {}
 player_to_game_map = {}
 
-def build_new_game(category_list):
+def build_new_game(category_list, difficulty):
     wt = FakeWordTranslator()
     wt.ingest_data("data/refined_non_english_words.txt")
     text_filter = TextFilter(wr, wt)
-    text_filter.rank_bound = 2000
+    text_filter.set_difficulty(difficulty)
     word_generator = CombinedWordGenerator(category_list)
     return ServerGame(text_filter, word_generator)
 
@@ -36,7 +36,9 @@ def serve_index():
 @app.route('/newgame')
 def serve_new_game():
     response = make_response(redirect('/game'))
-    new_game = build_new_game(request.args.to_dict().keys())
+    categories = [k for k in request.args.to_dict().keys() if k in generator_map.keys()]
+    difficulty = request.args.get('difficulty', 1)
+    new_game = build_new_game(categories, difficulty)
     game_map[new_game.id] = new_game
     player_id = new_game.add_player()
     player_to_game_map[player_id] = new_game
