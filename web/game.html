@@ -96,7 +96,12 @@
                 p.textContent = cur[2];
                 p.style.color = "green";
             } else {
-                p.textContent = `${cur[1]} guessed "${cur[2]}"`;
+                b = document.createElement('b');
+                b.textContent = cur[1];
+                a = document.createElement('a');
+                a.textContent = `: ${cur[2]}`;
+                p.appendChild(b); p.appendChild(a);
+//                p. = `${cur[1]} guessed "${cur[2]}"`;
             }
             chat_output.appendChild(p);
         }
