@@ -27,6 +27,7 @@ class TextToken:
 class TextFilter:
     def __init__(self, word_ranker, word_translator):
         self.wr = word_ranker
+        self.blacklist = []
         self.wt = word_translator        
         self.rank_bound = -1
 
@@ -51,6 +52,7 @@ class TextFilter:
         # print([tt.body for tt in tokens])
         return [TextToken(self.wt.translate(tt.body), pre=tt.pre, post=tt.post) 
                 if (self.wr.lookup_index(tt.body) or math.inf) > self.rank_bound
+                or tt.body in self.blacklist
                 else tt 
                 for tt in tokens]
 

@@ -56,6 +56,7 @@ class ServerGame:
 
     def generate_word(self):
         self.target_word = self.wg.gen_word()
+        self.tf.blacklist = [wd.strip() for wd in self.target_word.split(' ')]
         self.tf.wt.reset()
 
     def guess_word(self, player_id, guess_word):

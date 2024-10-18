@@ -22,3 +22,6 @@ class WordRanker:
 
     def lookup_word(self, ind):
         return self.wordlist.get(ind)
+
+googleWordRanker = WordRanker()
+googleWordRanker.ingest_data("data/google-10000-english-usa.txt")
