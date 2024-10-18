@@ -111,6 +111,7 @@
             player_hint.innerHTML 
                 = `It's your turn to be The Illiterate! Your word is: <b>${data_dict["target_word"]}</b>`;
             player_input.disabled = false;
+            player_input.value = `my word is "${data_dict['target_word']}"`
             chat_input.disabled = true; 
         } else {
             player_hint.innerHTML = `${data_dict["describer"]} is The Illiterate. Try and guess the word they are describing.`;
