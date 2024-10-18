@@ -7,16 +7,14 @@ class WordRanker:
 
     def ingest_data(self, freq_file):
         with open(freq_file, 'r') as f:
+            index = 0
             for ln in f.readlines():
-                ln_parts = ln.split('\t')
-                index = int(ln_parts[0])-100
-                word = ln_parts[1].lower()
-                if index < 0:
-                    continue
+                index += 1
+                word = ln.strip().lower()
                 if word in self.data.keys():
                     continue
                 self.data[word] = index
-                self.wordlist[index] = word 
+                self.wordlist[index] = word
 
     def lookup_index(self, word):
         res = self.data.get(word)

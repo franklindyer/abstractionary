@@ -14,10 +14,11 @@ class FakeWordTranslator:
 
     def ingest_data(self, wordlist):
         self.fakelist = [ln.strip() for ln in open(wordlist, 'r').readlines()]
-        random.shuffle(self.fakelist)
 
     def translate(self, word):
         if not word in self.wordmap.keys():
-            self.wordmap[word] = self.fakelist[0]
-            self.fakelist = self.fakelist[1:]
+            self.wordmap[word] = random.choice(self.fakelist)
         return self.wordmap[word]
+
+    def reset(self):
+        self.wordmap = {}

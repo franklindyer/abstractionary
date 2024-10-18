@@ -13,7 +13,7 @@ from WordRanker import *
 from WordGenerator import *
 
 wr = WordRanker()
-wr.ingest_data("data/eng_news_2023_10K-words.txt")
+wr.ingest_data("data/google-10000-english-usa.txt")
 
 game_map = {}
 player_to_game_map = {}
