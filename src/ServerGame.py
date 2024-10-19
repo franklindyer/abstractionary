@@ -62,7 +62,7 @@ class ServerGame:
         if len(self.players.keys()) == 0:
             return False
         if self.active_player_index >= len(self.player_list):
-            self.active_player_index = self.active_player_id % len(self.player_list)
+            self.active_player_index = self.active_player_index % len(self.player_list)
         return True
 
     def clean_inactive_players(self):
