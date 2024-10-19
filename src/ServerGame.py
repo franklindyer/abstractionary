@@ -1,10 +1,14 @@
+from datetime import datetime
 import random
 import string
+from threading import Lock
 
 DESC_LENGTH_LIMIT = 10000
 NAME_LENGTH_LIMIT = 10
 CHAT_LENGTH_LIMIT = 100
 CHAT_LIMIT = 50
+
+INACTIVITY_LIMIT_SECONDS = 60
 
 def rand_string(n):
     return ''.join(random.choice(string.ascii_uppercase + string.digits) for _ in range(n))
@@ -15,6 +19,13 @@ class ClientPlayer:
         self.name = "Anon"
         self.sock_id = None
         self.points = 0
+        self.last_active = datetime.now()
+
+    def register_activity(self):
+        self.last_active = datetime.now()
+
+    def is_inactive(self):
+        return (datetime.now() - self.last_active).seconds > INACTIVITY_LIMIT_SECONDS
 
 class ServerGame:
     def __init__(self, text_filter, word_generator):
@@ -27,6 +38,8 @@ class ServerGame:
         self.wg = word_generator
         self.chat = []
         self.generate_word()
+        self.last_cleaned = datetime.now()
+        self.lock = Lock()
 
     def active_player(self):
         return self.player_list[self.active_player_index]
@@ -42,15 +55,24 @@ class ServerGame:
         self.generate_word()
 
     def delete_player(self, player_id):
-        self.player_list.remove(player_id)
         if player_id not in self.players:
             return True
         del self.players[player_id]
+        self.player_list.remove(player_id)
         if len(self.players.keys()) == 0:
             return False
-        if self.active_player_index > len(self.player_list):
+        if self.active_player_index >= len(self.player_list):
             self.active_player_index = self.active_player_id % len(self.player_list)
         return True
+
+    def clean_inactive_players(self):
+        ids = [k for k in self.players.keys()]
+        for player_id in ids:
+            if self.players[player_id].is_inactive():
+                self.delete_player(player_id)
+        if len(self.players) == 0:
+            return True
+        return False
 
     def get_desc(self):
         return self.desc_field
@@ -72,10 +94,13 @@ class ServerGame:
         return False
    
     def receive_client_state(self, sid, state):
+        if (datetime.now() - self.last_cleaned).seconds > INACTIVITY_LIMIT_SECONDS:
+            self.clean_inactive_players()
         player_id = state["player_id"]
         if player_id not in self.players:
             return
         player = self.players[player_id]
+        player.register_activity()
         player.sock_id = sid
         if player.name == "Anon" and state["player_name"] != "":
             player.name = state["player_name"][:NAME_LENGTH_LIMIT]

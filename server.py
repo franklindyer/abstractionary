@@ -35,6 +35,9 @@ def serve_index():
 
 @app.route('/newgame')
 def serve_new_game():
+    for game_id in game_map:
+        if game_map[game_id].clean_inactive_players():
+            del game_map[game_id]
     response = make_response(redirect('/game'))
     categories = [k for k in request.args.to_dict().keys() if k in generator_map.keys()]
     difficulty = request.args.get('difficulty', 1)
@@ -55,7 +58,9 @@ def serve_join_game(game_id):
             player_to_game_map[prev_id].delete_player(prev_id)
             del player_to_game_map[prev_id]
     game = game_map[game_id]
+    game.lock.acquire()
     player_id = game.add_player()
+    game.lock.release()
     player_to_game_map[player_id] = game
     response = make_response(redirect('/game'))
     response.set_cookie("player_id", player_id)
@@ -83,8 +88,10 @@ def socket_message(data):
         return
     player_id = client_state["player_id"]
     game = player_to_game_map[player_id]
+    game.lock.acquire()
     game.receive_client_state(request.sid, client_state)
     emit('gamemsg', json.dumps(game.get_game_state(player_id)))
+    game.lock.release()
 
 @socketio.on('chat')
 def socket_chat(data):
@@ -94,6 +101,8 @@ def socket_chat(data):
         return
     player_id = client_msg["player_id"]
     game = player_to_game_map[player_id]
+    game.lock.acquire()
     game.receive_chat(player_id, client_msg["chat_msg"])
+    game.lock.release()
 
 app.run(host='0.0.0.0', port=5001)
