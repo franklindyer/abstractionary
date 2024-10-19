@@ -61,8 +61,6 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js" integrity="sha512-q/dWJ3kcmjBLU4Qc47E4A9kTB4m3wuTY7vkFJDTZKjTs8jhyGQnaUrxa0Ytd0ssMZhbNua9hE+E7Qv1j+DyZwA==" crossorigin="anonymous"></script>
 <script>
-    console.log("Hello, world!")
-
     player_input = document.getElementById("player-input");
     player_output = document.getElementById("player-output");
     chat_input = document.getElementById("chat-input");
@@ -98,6 +96,7 @@
     });
     socket.on('gamemsg', (data) => {
         var data_dict = JSON.parse(data);
+        
         player_output.textContent = data_dict["desc_field"];
         player_output.scrollTop = player_output.scrollHeight;
         chat_output.innerHTML = "";
@@ -134,11 +133,13 @@
             if (player_input.disabled)
                 player_input.value = `my word is "${data_dict['target_word']}"`;
             player_input.disabled = false;
+            player_output.disabled = false;
             chat_input.disabled = true; 
         } else {
             player_hint.innerHTML = `${data_dict["describer"]} is The Illiterate. Try and guess the word they are describing.`;
             player_input.value = "";
             player_input.disabled = true;
+            player_output.disabled = true;
             player_output.value = ""; 
             chat_input.disabled = false; 
         }

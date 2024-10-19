@@ -78,8 +78,7 @@ class ServerGame:
         return self.desc_field
 
     def update_desc(self, player_id, new_desc):
-        if player_id == self.active_player():
-            self.desc_field = self.tf.filter(new_desc)
+        self.desc_field = self.tf.filter(new_desc)
 
     def generate_word(self):
         self.target_word = self.wg.gen_word()
@@ -110,7 +109,7 @@ class ServerGame:
  
     def get_game_state(self, player_id):
         game_state = {
-            "active_player": self.active_player(),
+            # "active_player": self.active_player()[:10],
             "num_players": len(self.players.keys()),
             "player_names": [self.players[id].name for id in self.player_list],
             "chat": self.chat,
