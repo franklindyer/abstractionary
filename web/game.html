@@ -22,7 +22,7 @@
 
         #player-chat {
             width: 50%;
-            height: 300px;
+            height: 400px;
             margin-left: auto;
             margin-right: auto;
             margin-top: 10px;
@@ -51,7 +51,7 @@
     <p id="active-player-hint"></p>
     <div>
         <textarea class="game-text-box" id="player-input" disabled>A monad is just a monoid in the category of endofunctors.</textarea>
-        <textarea class="game-text-box" id="player-output" disabled></textarea>
+        <textarea class="game-text-box" id="player-output" readonly></textarea>
         <input type="text" id="chat-input" spellcheck="true"></input>
         <div id="chat-section-container">
             <a id="player-count"></a>
@@ -133,14 +133,11 @@
             if (player_input.disabled)
                 player_input.value = `my word is "${data_dict['target_word']}"`;
             player_input.disabled = false;
-            player_output.disabled = false;
             chat_input.disabled = true; 
         } else {
             player_hint.innerHTML = `${data_dict["describer"]} is The Illiterate. Try and guess the word they are describing.`;
             player_input.value = "";
             player_input.disabled = true;
-            player_output.disabled = true;
-            player_output.value = ""; 
             chat_input.disabled = false; 
         }
     });

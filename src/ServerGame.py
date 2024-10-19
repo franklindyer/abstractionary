@@ -113,11 +113,11 @@ class ServerGame:
             "num_players": len(self.players.keys()),
             "player_names": [self.players[id].name for id in self.player_list],
             "chat": self.chat,
+            "desc_field": self.desc_field,
             "describer": self.players[self.active_player()].name,
         }
         if player_id == self.active_player():
             game_state["target_word"] = self.target_word
-            game_state["desc_field"] = self.desc_field
         return game_state
 
     def receive_chat(self, id, chat_msg):
