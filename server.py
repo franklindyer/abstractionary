@@ -35,7 +35,8 @@ def serve_index():
 
 @app.route('/newgame')
 def serve_new_game():
-    for game_id in game_map:
+    gkeys = [k for k in game_map.keys()]
+    for game_id in gkeys:
         if game_map[game_id].clean_inactive_players():
             del game_map[game_id]
     response = make_response(redirect('/game'))

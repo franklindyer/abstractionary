@@ -43,7 +43,7 @@ class TextFilter:
     def set_difficulty(self, diff_string):
         self.rank_bound = difficulty_map.get(diff_string)
         if self.rank_bound == None:
-            self.rank_bound = difficult_map["default"]
+            self.rank_bound = difficulty_map["default"]
 
     def filter(self, txt):
         return self.reassemble_text(self.translate_text(self.tokenize_text(txt)))
