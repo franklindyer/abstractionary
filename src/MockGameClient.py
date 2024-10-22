@@ -96,6 +96,7 @@ class MockClientGame:
             th = Thread(target = cli.event_loop)
             th.start()
 
-mg = MockClientGame("http://10.0.0.76:5001")
-mg.make_game()
-mg.run()
+for i in range(50):
+    mg = MockClientGame("http://10.0.0.76:5001")
+    mg.make_game()
+    mg.run()
