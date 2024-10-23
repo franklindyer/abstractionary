@@ -77,6 +77,18 @@ def serve_game():
     game = player_to_game_map[player_id]
     return render_template("game.html", game_id = game.id)
 
+@app.route('/history')
+def serve_history():
+    if not "player_id" in request.cookies:
+        return make_response("History not found.", 404) 
+    player_id = request.cookies["player_id"]
+    if not player_id in player_to_game_map:
+        return make_response("History not found.", 404) 
+    game = player_to_game_map[player_id]
+    resp = response = make_response(game.get_history(), 200)
+    resp.mimetype = "text/plain"
+    return resp
+
 @socketio.on('connect')
 def socket_connect():
     print("CLIENT IS CONNECTED")
@@ -85,7 +97,6 @@ def socket_connect():
 def socket_message(data):
     client_state = json.loads(data["data"])
     if "player_id" not in client_state or client_state["player_id"] not in player_to_game_map:
-        # print("ERROR: Player identity not found in socket message.")
         return
     player_id = client_state["player_id"]
     game = player_to_game_map[player_id]

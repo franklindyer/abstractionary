@@ -1,4 +1,5 @@
 from datetime import datetime
+import os
 import random
 import string
 from threading import Lock
@@ -37,6 +38,8 @@ class ServerGame:
         self.tf = text_filter
         self.wg = word_generator
         self.chat = []
+        self.chat_history = []
+        self.last_history = "/not/a/path"
         self.generate_word()
         self.last_cleaned = datetime.now()
         self.lock = Lock()
@@ -74,11 +77,35 @@ class ServerGame:
             return True
         return False
 
+    def add_chat(self, msg_type, sender_name, msg):
+        self.chat = [(msg_type, sender_name, msg)] + self.chat
+        self.chat = self.chat[:CHAT_LIMIT] 
+        self.chat_history = self.chat_history + [(msg_type, sender_name, msg)]
+
+    def save_history(self):
+        filename = f"./history/{self.target_word}-{self.id}-{datetime.now().strftime('%Y-%m-%d-%H-%M-%S')}.txt"
+        self.last_history = filename
+        with open(filename, 'w+') as f:
+            for cmsg in self.chat_history:
+                if cmsg[0] == "HINT":
+                    f.write(f"* {cmsg[1]} : {cmsg[2]}\n")
+                elif cmsg[0] == "MSG":
+                    f.write(f"{cmsg[1]} : {cmsg[2]}\n")
+                else:
+                    f.write(f"{cmsg[2]}\n")
+        f.write(f"At end of round, the description preview said: {self.desc_field}")
+        self.chat_history = []
+
     def get_desc(self):
         return self.desc_field
 
     def update_desc(self, player_id, new_desc):
         self.desc_field = self.tf.filter(new_desc)
+
+    def get_history(self):
+        if not os.path.isfile(self.last_history):
+            return "There is no history for your game."
+        return open(self.last_history, 'r').read()
 
     def generate_word(self):
         self.target_word = self.wg.gen_word()
@@ -123,11 +150,12 @@ class ServerGame:
     def receive_chat(self, id, chat_msg):
         chat_msg = chat_msg[:CHAT_LENGTH_LIMIT]
         if id == self.active_player():
-            self.chat = [("HINT", self.players[id].name, self.tf.filter(chat_msg))] + self.chat
+            self.add_chat("HINT", self.players[id].name, self.tf.filter(chat_msg))
         elif chat_msg.lower() == self.target_word:
-            self.chat = [("WIN", "", f"Player {self.players[id].name} has guessed the word: {self.target_word}!")] + self.chat
+            win_msg = f"Player {self.players[id].name} has guessed the word: {self.target_word}!"
+            self.add_chat("WIN", "", win_msg)
+            self.save_history()
             self.next_player()
-            print(f"Player {id} has guessed the word.")
+            # print(f"Player {id} has guessed the word.")
         else:
-            self.chat = [("MSG", self.players[id].name, chat_msg)] + self.chat
-        self.chat = self.chat[:CHAT_LIMIT]
+            self.add_chat("MSG", self.players[id].name, chat_msg)
