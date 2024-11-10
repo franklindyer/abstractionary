@@ -64,7 +64,7 @@ class ServerGame:
         self.player_list.remove(player_id)
         if len(self.players.keys()) == 0:
             return False
-        if self.active_player_index >= len(self.player_list):
+        if self.active_player_index >= len(self.player_list) and len(self.player_list) > 0:
             self.active_player_index = self.active_player_index % len(self.player_list)
         return True
 

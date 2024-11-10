@@ -26,15 +26,27 @@ def build_new_game(category_list, difficulty):
     word_generator = CombinedWordGenerator(category_list)
     return ServerGame(text_filter, word_generator)
 
+def purge_games():
+    deleted_ids = []
+    for k in game_map:
+        game = game_map[k]
+        if len(game.player_list) == 0:
+            deleted_ids = deleted_ids + [game.id]
+            del game_map[k]
+    for pid in player_to_game_map:
+        if player_to_game_map[pid].id in deleted_ids:
+            del player_to_game_map[pid]
+
 app = Flask(__name__, template_folder="./web")
 socketio = SocketIO(app)
 
 @app.route('/')
 def serve_index():
-    return render_template("index.html")
+    return render_template("index.html", active_games = len(game_map.keys()))
 
 @app.route('/newgame')
 def serve_new_game():
+    purge_games()
     gkeys = [k for k in game_map.keys()]
     for game_id in gkeys:
         if game_map[game_id].clean_inactive_players():
