@@ -159,11 +159,12 @@ class ServerGame:
         return game_state
 
     def receive_chat(self, id, chat_msg):
-        chat_msg = chat_msg[:CHAT_LENGTH_LIMIT]
         if id == self.active_player():
+            chat_msg = chat_msg[:DESC_LENGTH_LIMIT]
             self.words_used_in_round = self.words_used_in_round + len(chat_msg.split(' '))
             self.add_chat("HINT", self.players[id].name, self.tf.filter(chat_msg))
         elif chat_msg.lower() == self.target_word:
+            chat_msg = chat_msg[:CHAT_LENGTH_LIMIT]
             score = max(0, 200-self.words_used_in_round)
             self.players[id].points += score // 2
             self.players[self.active_player()].points += score
