@@ -1,6 +1,5 @@
 body {
     font-family: Bodoni;
-    background-color: lightgray;
 }
 
 #welcome-div {
@@ -19,6 +18,98 @@ body {
     margin-right: auto;
     margin-top: 20px;
     padding: 10px;
-    background-color: white;
+    background-color: white; 
     border-radius: 10px;
 }
+
+.game-text-box {
+    width: 49%;
+    display: inline-block;
+    font-family: Menlo;
+    font-size: 16px;
+    height: 100px;
+}
+
+.chat-message {
+    margin: 4px;
+    padding: 4px;
+    background-color: #d2e8fc;
+    border-radius: 3px;
+}
+
+.highlighted-chat-message {
+    background-color: lightblue;
+    border-radius: 3px;
+}
+
+#player-chat {
+    width: 50%;
+    height: 400px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10px;
+    font-family: Menlo;
+    font-size: 16px;
+    white-space: pre-wrap;
+    border-radius: 2px;
+    border: 2px solid gray;
+    display: inline-block;
+    text-align: left;
+    padding: 4px;
+    overflow: scroll;
+}
+
+#players-box {
+    display: inline-block;
+    vertical-align: top;
+}
+
+#chat-section-container {
+    margin: 5px;
+    text-align: center;
+}
+
+.player-thumbnail {
+    vertical-align: top;
+    background-color: #f8f8f8;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 10px;
+    width: 200px;
+    text-align: left;
+    margin: 10px;
+    overflow: auto;
+}
+
+.player-thumbnail b {
+    vertical-align: top;
+    font-family: Menlo;
+}
+
+.player-nametag {
+    white-space: pre;
+}
+
+.player-icon {
+    width: 50px;
+    height: 50px;
+    float: left;
+    padding-right: 5px;
+    object-fit: contain;
+}
+
+#player-chat-container {
+    display: inline-block;
+    width: 50%;
+    padding: 10px;
+}
+
+#player-chat {
+    width: 100%;
+    display: block;
+    float: left;
+}
+
+#chat-input {
+    font-family: Menlo;
+    display: block;

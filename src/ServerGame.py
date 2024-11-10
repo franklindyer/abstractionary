@@ -164,8 +164,9 @@ class ServerGame:
             self.words_used_in_round = self.words_used_in_round + len(chat_msg.split(' '))
             self.add_chat("HINT", self.players[id].name, self.tf.filter(chat_msg))
         elif chat_msg.lower() == self.target_word:
-            self.players[id].points += 10
-            self.players[self.active_player()].points += max(0, 200-self.words_used_in_round)
+            score = max(0, 200-self.words_used_in_round)
+            self.players[id].points += score // 2
+            self.players[self.active_player()].points += score
             win_msg = f"Player {self.players[id].name} has guessed the word: {self.target_word}!"
             self.add_chat("WIN", "", win_msg)
             self.save_history()
