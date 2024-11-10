@@ -1,5 +1,7 @@
 body {
     font-family: Bodoni;
+    background-image: url("/static/wallpaper.png");
+    // background-size: cover; 
 }
 
 #welcome-div {
