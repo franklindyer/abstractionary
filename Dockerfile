@@ -1,7 +1,7 @@
 FROM ubuntu:latest
 
 RUN apt-get update -y && apt-get install -y python3 pip
-RUN python3 -m pip install flask flask_socketio gensim
+RUN python3 -m pip install flask flask_socketio
 
 RUN mkdir /app
 RUN mkdir /app/history
