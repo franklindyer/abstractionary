@@ -1,0 +1,10 @@
+services:
+    abstractionary-server:
+        build:
+            context: .
+        volumes:
+            - ./history:/app/history
+            - ./web:/app/web
+            - ./data:/app/data
+        ports:
+            - 5001:5001

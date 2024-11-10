@@ -43,6 +43,16 @@ location_generator = FileWordGenerator("data/locations.txt")
 adjective_generator = FileWordGenerator("data/adjectives.txt")
 sex_generator = FileWordGenerator("data/sex.txt")
 google_generator = FileWordGenerator("data/google_searches.txt")
+concrete_generator = FileWordGenerator("data/concreteness-ranking.txt")
+concrete_generator.words = concrete_generator.words[5000:]
+
+techno_generator = FileWordGenerator("data/techno.txt")
+legal_generator = FileWordGenerator("data/legal.txt")
+bio_generator = FileWordGenerator("data/biology.txt")
+art_generator = FileWordGenerator("data/art.txt")
+money_generator = FileWordGenerator("data/money.txt")
+engineer_generator = FileWordGenerator("data/engineer.txt")
+adult_generator = FileWordGenerator("data/adulting.txt")
 
 generator_map = {
     "uncommon": uncommon_generator,
@@ -56,6 +66,15 @@ generator_map = {
     "adjectives": adjective_generator,
     "sex": sex_generator,
     "googles": google_generator,
+    "concrete": concrete_generator,
+
+    "techno": techno_generator,
+    "legal": legal_generator,
+    "biology": bio_generator,
+    "art": art_generator,
+    "money": money_generator,
+    "engineer": engineer_generator,
+    "adulting": adult_generator,
 }
 
 class CombinedWordGenerator:

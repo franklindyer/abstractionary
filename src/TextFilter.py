@@ -1,3 +1,6 @@
+import gensim
+import gensim.downloader
+from gensim.models import Word2Vec
 import math
 import re
 
@@ -25,8 +28,8 @@ class TextToken:
         return TextToken(s[len(pre):(len(s)-len(post))], pre=pre, post=post)
 
 difficulty_map = {
-    "easy": 3000,
-    "medium": 2000,
+    "easy": 2000,
+    "medium": 1500,
     "hard": 1000,
     "insane": 300,
     "impossible": 100,
@@ -44,6 +47,9 @@ class TextFilter:
         self.rank_bound = difficulty_map.get(diff_string)
         if self.rank_bound == None:
             self.rank_bound = difficulty_map["default"]
+
+    def set_target_phrase(self, target_phrase):
+        self.blacklist = [wd.strip() for wd in target_phrase.split(' ')]
 
     def filter(self, txt):
         return self.reassemble_text(self.translate_text(self.tokenize_text(txt)))
@@ -72,3 +78,39 @@ class TextFilter:
 
     def reassemble_text(self, tokens):
         return ''.join([tt.combine() for tt in tokens])
+
+vector_sim_map = {
+    "easy": 0.2,
+    "medium": 0,
+    "hard": -0.1,
+    "insane": -0.3,
+    "impossible": -0.5,
+    "default": 0.2
+}
+
+# dataset = gensim.downloader.load("text8")
+# VECTOR_MODEL = Word2Vec(dataset)
+
+class VectorTextFilter(TextFilter):
+    def __init__(self, word_translator):
+        self.blacklist = []
+        self.target_word = None
+        self.wt = word_translator
+        self.vector_bound = -1
+        self.model = VECTOR_MODEL
+
+    def set_difficulty(self, diff_string):
+        self.vector_bound = vector_sim_map.get(diff_string)
+        if self.vector_bound == None:
+            self.vector_bound = vector_sim_map["default"]
+    
+    def set_target_phrase(self, target_phrase):
+        self.blacklist = [wd.strip() for wd in target_phrase.split(' ')]
+    
+    def translate_text(self, tokens):
+        tokens = [tt for tt in tokens if tt.body in self.model.wv.key_to_index]
+        return [TextToken(self.wt.translate(tt.body), pre=tt.pre, post=tt.post) 
+                if tt.body in self.blacklist
+                or any([self.model.wv.similarity(tt.body, k) > self.vector_bound for k in self.blacklist])
+                else tt 
+                for tt in tokens]
