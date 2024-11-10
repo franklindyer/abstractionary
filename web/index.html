@@ -1,6 +1,8 @@
 <head>
+    <link rel='stylesheet' type="text/css" href="/static/style.css"/>
 </head>
 <body>
+    <div id="welcome-div">
     <h1>Abstractionary</h1>
 
     <p>Welcome to Abstractionary! There are currently <b>{{ active_games }}</b> active games.</p>
@@ -12,7 +14,9 @@
     <p>When it is not your turn, another ruxa will try to make you guess their twugles.</p>
 
     <p>Good luck!</p>
+    </div>
 
+    <div id="play-game-div">
     <form method="get" action="/newgame">
         <details>
         <summary>Customize your wordlist</summary>
@@ -68,4 +72,5 @@
 
         <input type="submit" value="Let's play!"/>
     </form>
+    </div>
 </body>

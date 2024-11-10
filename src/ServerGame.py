@@ -17,6 +17,8 @@ def rand_string(n):
 class ClientPlayer:
     def __init__(self):
         self.id = rand_string(20)
+        self.icon = random.randint(0,200)
+        self.score = 0
         self.name = "Anon"
         self.sock_id = None
         self.points = 0
@@ -27,6 +29,14 @@ class ClientPlayer:
 
     def is_inactive(self):
         return (datetime.now() - self.last_active).seconds > INACTIVITY_LIMIT_SECONDS
+
+    def dictify(self):
+        return {
+            "name": self.name,
+            "icon": f"/static/icon_{self.icon}.png",
+            "points": self.points,
+            "id": self.id[:5]
+        }
 
 class ServerGame:
     def __init__(self, text_filter, word_generator):
@@ -43,6 +53,7 @@ class ServerGame:
         self.generate_word()
         self.last_cleaned = datetime.now()
         self.lock = Lock()
+        self.words_used_in_round = 0
 
     def active_player(self):
         return self.player_list[self.active_player_index]
@@ -56,6 +67,7 @@ class ServerGame:
     def next_player(self):
         self.active_player_index = (self.active_player_index+1) % len(self.player_list)
         self.generate_word()
+        self.words_used_in_round = 0
 
     def delete_player(self, player_id):
         if player_id not in self.players:
@@ -131,14 +143,13 @@ class ServerGame:
         if player.name == "Anon" and state["player_name"] != "":
             player.name = state["player_name"][:NAME_LENGTH_LIMIT]
         if player_id == self.active_player():
-            # print(f"Got client text: {state['desc_field']}")
             self.update_desc(player_id, state["desc_field"][:DESC_LENGTH_LIMIT])
  
     def get_game_state(self, player_id):
         game_state = {
             # "active_player": self.active_player()[:10],
             "num_players": len(self.players.keys()),
-            "player_names": [self.players[id].name for id in self.player_list],
+            "players": [self.players[id].dictify() for id in self.player_list],
             "chat": self.chat,
             "desc_field": self.desc_field,
             "describer": self.players[self.active_player()].name,
@@ -150,8 +161,11 @@ class ServerGame:
     def receive_chat(self, id, chat_msg):
         chat_msg = chat_msg[:CHAT_LENGTH_LIMIT]
         if id == self.active_player():
+            self.words_used_in_round = self.words_used_in_round + len(chat_msg.split(' '))
             self.add_chat("HINT", self.players[id].name, self.tf.filter(chat_msg))
         elif chat_msg.lower() == self.target_word:
+            self.players[id].points += 10
+            self.players[self.active_player()].points += max(0, 200-self.words_used_in_round)
             win_msg = f"Player {self.players[id].name} has guessed the word: {self.target_word}!"
             self.add_chat("WIN", "", win_msg)
             self.save_history()

@@ -3,7 +3,7 @@
         .game-text-box {
             width: 49%;
             display: inline-block;
-            font-family: Courier;
+            font-family: Menlo;
             font-size: 16px;
             height: 100px;
         }
@@ -26,20 +26,72 @@
             margin-left: auto;
             margin-right: auto;
             margin-top: 10px;
-            font-family: Courier;
+            font-family: Menlo;
             font-size: 16px;
             white-space: pre-wrap;
             border-radius: 2px;
             border: 2px solid gray;
-            display: block;
+            display: inline-block;
             text-align: left;
             padding: 4px;
             overflow: scroll;
         }
 
+        #players-box {
+            display: inline-block;
+            vertical-align: top;
+        }
+
         #chat-section-container {
             margin: 5px;
             text-align: center;
+        }
+
+        .player-thumbnail {
+            vertical-align: top;
+            background-color: #f8f8f8;
+            border-radius: 5px;
+            padding: 10px;
+            margin: 10px;
+            width: 200px;
+            text-align: left;
+            margin: 10px;
+            overflow: auto;
+        }
+
+        .player-thumbnail b {
+            vertical-align: top;
+            font-family: Menlo;
+        }
+
+        .player-nametag {
+            white-space: pre;
+        }
+
+        .player-icon {
+            width: 50px;
+            height: 50px;
+            float: left;
+            padding-right: 5px;
+            object-fit: contain;
+        }
+       
+        #player-chat-container {
+            display: inline-block;
+            width: 50%;
+            padding: 10px;
+        }
+
+        #player-chat {
+            width: 100%;
+            display: block;
+            float: left;
+        }
+ 
+        #chat-input {
+            font-family: Menlo;
+            display: block;
+            width: 100%;
         }
     </style>
 </head>
@@ -52,10 +104,12 @@
     <div>
         <textarea class="game-text-box" id="player-input" disabled>A monad is just a monoid in the category of endofunctors.</textarea>
         <textarea class="game-text-box" id="player-output" readonly></textarea>
-        <input type="text" id="chat-input" spellcheck="true"></input>
         <div id="chat-section-container">
-            <a id="player-count"></a>
-            <div id="player-chat"></div>
+            <div id="players-box"></div>
+            <div id="player-chat-container">
+                <input type="text" id="chat-input" spellcheck="true"></input>
+                <div id="player-chat"></div>
+            </div>
         </div>
     </div>
 
@@ -66,7 +120,7 @@
     chat_input = document.getElementById("chat-input");
     chat_output = document.getElementById("player-chat")
     player_hint = document.getElementById("active-player-hint");
-    player_count = document.getElementById("player-count");
+    players_box = document.getElementById("players-box");
 
     const get_cookie = (name) => {
         return document.cookie.split('; ').reduce((r, v) => {
@@ -121,11 +175,24 @@
             chat_output.appendChild(p);
         }
 
-        player_count.textContent = "Players present: ";
-        for (var name of data_dict["player_names"]) {
-            player_count.textContent = player_count.textContent + name + ", ";
+        players_box.innerHTML = '';
+        for (var p of data_dict["players"]) {
+            var player_thumb = document.getElementById(`player-thumbnail-${p["id"]}`)
+            if (player_thumb === null) {
+                player_thumb = document.createElement('div');
+                player_thumb.classList.add('player-thumbnail');
+                player_thumb.id = `player-thumbnail-${p["id"]}`;
+                player_icon = document.createElement('img');
+                player_icon.classList.add('player-icon')
+                player_icon.src = p["icon"];
+                player_name = document.createElement('b');
+                player_name.classList.add("player-nametag");
+                player_name.textContent = `${p["name"]}\n${p["points"]} points`
+                player_thumb.appendChild(player_icon);
+                player_thumb.appendChild(player_name);
+                players_box.appendChild(player_thumb);
+            }
         }
-        player_count.textContent = player_count.textContent.slice(0,-2);
 
         if ("target_word" in data_dict) {
             player_hint.innerHTML 

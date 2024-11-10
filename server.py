@@ -1,4 +1,4 @@
-from flask import Flask, make_response, redirect, render_template, request
+from flask import Flask, make_response, redirect, render_template, request, send_from_directory
 from flask_socketio import emit, SocketIO
 import json
 
@@ -43,6 +43,10 @@ socketio = SocketIO(app)
 @app.route('/')
 def serve_index():
     return render_template("index.html", active_games = len(game_map.keys()))
+
+@app.route('/static/<path:path>')
+def serve_file(path):
+    return send_from_directory('static', path)
 
 @app.route('/newgame')
 def serve_new_game():
