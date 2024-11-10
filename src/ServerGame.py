@@ -93,7 +93,7 @@ class ServerGame:
                     f.write(f"{cmsg[1]} : {cmsg[2]}\n")
                 else:
                     f.write(f"{cmsg[2]}\n")
-        f.write(f"At end of round, the description preview said: {self.desc_field}")
+            f.write(f"At end of round, the description preview said: {self.desc_field}")
         self.chat_history = []
 
     def get_desc(self):
@@ -109,7 +109,7 @@ class ServerGame:
 
     def generate_word(self):
         self.target_word = self.wg.gen_word()
-        self.tf.blacklist = [wd.strip() for wd in self.target_word.split(' ')]
+        self.tf.set_target_phrase(self.target_word) 
         self.tf.wt.reset()
 
     def guess_word(self, player_id, guess_word):

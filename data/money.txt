@@ -1,0 +1,375 @@
+Account Balance
+Account Statement
+Accounts Payable
+Accounts Receivable
+Accrued Interest
+Adjustable Rate
+Amortization
+Annual Percentage Rate (APR)
+Annual Percentage Yield (APY)
+Annuity
+Appreciation
+Arbitrage
+Asset Allocation
+Audit
+Authorized User
+Automated Clearing House (ACH)
+Balance Transfer
+Bank Reconciliation
+Bank Run
+Bankruptcy
+Base Rate
+Bear Market
+Beneficiary
+Blue-Chip Stock
+Bond Market
+Bookkeeping
+Break-Even Point
+Bridge Loan
+Brokerage Account
+Budget Deficit
+Budget Surplus
+Business Cycle
+Buy and Hold
+Buyout
+Callable Bond
+Capital Appreciation
+Capital Gain
+Capital Loss
+Capital Market
+Cash Flow
+Cash Reserve
+Certificate of Deposit (CD)
+Chartered Financial Analyst (CFA)
+Collateral
+Commercial Bank
+Commodity Market
+Compound Interest
+Consumer Confidence
+Consumer Debt
+Consumer Price Index (CPI)
+Corporate Bond
+Cost of Capital
+Cost of Goods Sold (COGS)
+Credit Bureau
+Credit Limit
+Credit Rating
+Credit Report
+Credit Score
+Credit Union
+Cryptocurrency
+Current Assets
+Current Liabilities
+Currency Exchange
+Custodial Account
+Debenture
+Debt Consolidation
+Debt Financing
+Debt-to-Income Ratio (DTI)
+Default Risk
+Deferred Payment
+Defined Benefit Plan
+Defined Contribution Plan
+Deflation
+Depreciation
+Derivative
+Digital Wallet
+Direct Deposit
+Discount Rate
+Disinflation
+Diversification
+Dividend
+Dividend Yield
+Dollar-Cost Averaging
+Downgrade
+Earnings Report
+Economic Forecast
+Economic Indicator
+Economic Recession
+Economies of Scale
+Emergency Fund
+Employee Stock Ownership Plan (ESOP)
+Emerging Market
+Equity Market
+Exchange Rate
+Expense Ratio
+Federal Deposit Insurance Corporation (FDIC)
+Federal Reserve
+Fiduciary
+Financial Advisor
+Financial Literacy
+Financial Market
+Financial Statement
+Fixed Assets
+Fixed Income
+Fixed Interest Rate
+Forex Market
+Fractional Reserve Banking
+Futures Contract
+General Ledger
+Gift Tax
+Globalization
+Goodwill
+Gross Domestic Product (GDP)
+Gross Margin
+Gross Profit
+Hedge Fund
+High-Yield Savings Account
+Home Equity Loan
+Hyperinflation
+Index Fund
+Inflation Rate
+Initial Coin Offering (ICO)
+Initial Public Offering (IPO)
+Installment Loan
+Interest Coverage Ratio
+Interest Rate Risk
+Internal Rate of Return (IRR)
+International Monetary Fund (IMF)
+Investment Portfolio
+Invoice Factoring
+Joint Account
+Junk Bond
+Key Performance Indicator (KPI)
+Labor Market
+Leverage
+Liability Insurance
+Line of Credit
+Liquidity
+Loan Amortization
+Loan Origination Fee
+Long-Term Debt
+Loss Leader
+Marginal Cost
+Market Capitalization
+Market Liquidity
+Market Risk
+Market Volatility
+Microfinance
+Monetary Policy
+Money Laundering
+Money Market Account
+Mortgage
+Municipal Bond
+Mutual Fund
+Net Income
+Net Worth
+Non-Fungible Token (NFT)
+Non-Performing Loan (NPL)
+Operating Expenses
+Operating Income
+Option Contract
+Overdraft Fee
+Pension Fund
+Personal Finance Software
+Piggy Bank
+Portfolio Diversification
+Power of Attorney
+Premium (Insurance)
+Price-to-Earnings Ratio
+Principal Payment
+Private Equity
+Profit Margin
+Profit and Loss Statement (P&L)
+Progressive Tax
+Promissory Note
+Purchasing Power
+Quantitative Easing
+Real Estate Investment Trust (REIT)
+Real Interest Rate
+Rebalancing
+Receivables Financing
+Recession
+Refinancing
+Registered Investment Advisor (RIA)
+Regulatory Compliance
+Retirement Savings
+Return on Equity (ROE)
+Return on Investment (ROI)
+Revenue Stream
+Risk Management
+Savings Account
+Securities Exchange
+Securitization
+Shareholder
+Short Sale
+Simple Interest
+Sinking Fund
+Social Security
+Sovereign Debt
+Stock Exchange
+Stock Option
+Stop-Loss Order
+Supply and Demand
+Tax Bracket
+Tax Deduction
+Tax-Deferred Account
+Tax-Free Savings Account (TFSA)
+Trade Deficit
+Trade Surplus
+Transaction Fee
+Treasury Bond
+Treasury Yield
+Unemployment Rate
+Universal Basic Income (UBI)
+Valuation
+Variable Interest Rate
+Venture Capital
+Wealth Management
+Withdrawal Limit
+Working Capital
+Yield Curve
+Zero-Based Budgeting
+Actuary
+Alternative Investment
+Asset Class
+Bad Debt
+Balance Sheet
+Bank Guarantee
+Blockchain
+Book Value
+Business Model
+Buy-Side Analyst
+Capital Expenditure
+Cash Back
+Cash Dividend
+Clearinghouse
+Closing Costs
+Consumer Spending
+Contingency Fund
+Convertible Bond
+Crowdfunding
+Debt Ceiling
+Debt Instrument
+Deposit Slip
+Direct Debit
+Discretionary Spending
+Earnings Per Share (EPS)
+Economic Growth
+Economic Stimulus
+Exchange-Traded Fund (ETF)
+Export Credit
+Financial Inclusion
+Foreign Direct Investment (FDI)
+Fractional Shares
+Freelance Income
+Gross Pay
+Hedging Strategy
+Import Tariff
+Income Tax
+Individual Retirement Account (IRA)
+Inflation Hedge
+Insider Trading
+Installment Purchase
+Interest Income
+Inverse ETF
+Investment Grade
+Invoice Discounting
+Key Rate
+Labor Cost
+Lender of Last Resort
+Letter of Credit
+Liability Coverage
+Liquidity Risk
+Loan-to-Value Ratio
+Luxury Tax
+Market Basket
+Money Supply
+Mortgage Broker
+Municipal Budget
+Net Asset Value (NAV)
+Non-Banking Financial Company (NBFC)
+Offshore Banking
+Operating Lease
+Passive Income
+Payroll Deduction
+Payment Gateway
+Peer-to-Peer Lending
+Per Diem
+Portfolio Manager
+Pre-Approved Loan
+Price Elasticity
+Private Placement
+Procurement
+Property Tax
+Public Offering
+Quantitative Finance
+Real Estate Appraisal
+Revolving Credit
+Risk Tolerance
+Savings Goal
+Self-Employed Income
+Service Charge
+Short-Term Loan
+Socially Responsible Investment (SRI)
+Soft Currency
+Solvency Ratio
+Special Economic Zone (SEZ)
+Speculative Investment
+Startup Capital
+Statutory Reserve
+Stockbroker
+Structured Finance
+Subsidized Loan
+Surcharge
+Tax Evasion
+Tax Haven
+Tax Refund
+Time Deposit
+Trade Barrier
+Trade Finance
+Transaction Limit
+Treasury Bill
+Underwriting
+Vested Interest
+Wealth Tax
+Yield Spread
+Zero-Coupon Bond
+Accrued Liability
+Appreciating Asset
+Asset-Backed Security
+Bank Charter
+Barter System
+Business Angel
+Capital Flight
+Cash Flow Forecast
+Corporate Governance
+Cost-Push Inflation
+Credit Freeze
+Crowdsourcing
+Cryptographic Key
+Deposit Insurance
+Derivative Market
+Double-Entry Accounting
+Economic Sanctions
+Exchange Control
+Fair Market Value
+Financial Contagion
+Fiscal Deficit
+Fixed Exchange Rate
+Global Market
+Hedge Ratio
+Import Quota
+Income Statement
+Insurance Premium
+Investment Bank
+Invoice Payment Terms
+Lender Risk
+Liquidity Trap
+Market Bubble
+Market Manipulation
+Money Market Fund
+Negative Interest Rate
+Operational Risk
+Over-the-Counter Market
+Profit-Sharing Plan
+Quantitative Analyst
+Repatriation
+Shadow Banking
+Smart Contract
+Tax Compliance
+Trade Embargo
+Transactional Banking
+Trust Fund
+Unsecured Loan
+Yield Optimization
