@@ -17,7 +17,7 @@ def rand_string(n):
 class ClientPlayer:
     def __init__(self):
         self.id = rand_string(20)
-        self.icon = random.randint(0,200)
+        self.icon = random.randint(0,300)
         self.score = 0
         self.name = "Anon"
         self.sock_id = None

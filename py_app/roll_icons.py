@@ -17,10 +17,10 @@ EMO_ALL = EMO_FACES + EMO_THINGS
 #        if not filecmp.cmp(f'static/icon_{i}.png', 'static/notfound.png'):
 #            break
 
-id = 0
-n = 0
+id = 200
+n = 600
 
-while id < 200:
+while id < 300:
     n = n+1
     e1 = EMO_ALL[(n * 29) % len(EMO_ALL)]
     e2 = EMO_THINGS[(n * 29) % len(EMO_THINGS)]
