@@ -14,6 +14,16 @@ body {
     border-radius: 10px;
 }
 
+#game-info-div {
+    width: 80%;
+    margin-top: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: white;
+    border-radius: 10px;
+    padding: 10px;
+}
+
 #play-game-div {
     width: 80%;
     margin-left: auto;
@@ -32,6 +42,12 @@ body {
     height: 100px;
 }
 
+#player-help {
+    width: 100%;
+    display: block;
+    margin: 10px;
+}
+
 #player-input {
     float: left;
 }
@@ -45,15 +61,19 @@ body {
     padding: 4px;
     background-color: #d2e8fc;
     border-radius: 3px;
+    display: block;
 }
 
 .highlighted-chat-message {
     background-color: lightblue;
-    border-radius: 3px;
+}
+
+.win-chat-message {
+    background-color: #ddffdd;    
 }
 
 #player-chat {
-    width: 50%;
+    width: 60%;
     height: 400px;
     margin-left: auto;
     margin-right: auto;
@@ -72,11 +92,6 @@ body {
 #players-box {
     display: inline-block;
     vertical-align: top;
-}
-
-#chat-section-container {
-    margin: 5px;
-    text-align: center;
 }
 
 .player-thumbnail {
@@ -108,18 +123,16 @@ body {
     object-fit: contain;
 }
 
-#player-chat-container {
-    display: inline-block;
-    width: 50%;
-    padding: 10px;
-}
-
-#player-chat {
-    width: 100%;
+#chat-section-container {
     display: block;
-    float: left;
+    width: 90%;
+    padding: 10px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 #chat-input {
     font-family: Menlo;
     display: block;
+    width: 95%;
+}

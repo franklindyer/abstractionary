@@ -22,45 +22,35 @@ function state_update_loop(sock) {
     setTimeout(() => { state_update_loop(sock); }, 500);
 };
 
-// Credit to Dan Abramov for this custom hook
-// https://overreacted.io/making-setinterval-declarative-with-react-hooks/
-function useInterval(callback, delay) {
-  const savedCallback = React.useRef();
- 
-  // Remember the latest callback.
-  React.useEffect(() => {
-    savedCallback.current = callback;
-  }, [callback]);
- 
-  // Set up the interval.
-  React.useEffect(() => {
-    function tick() {
-      savedCallback.current();
-    }
-    if (delay !== null) {
-      let id = setInterval(tick, delay);
-      return () => clearInterval(id);
-    }
-  }, [delay]);
-}
-
 function HintInput({enabled, onChange}) {
     const handleChange = (event) => {
         onChange(event.target.value);
     };
+    const onHintKeydown = (e) => {
+        if (e.keyCode === 13) {
+            e.preventDefault();
+            socket.emit('chat', { data: JSON.stringify({
+                player_id: get_cookie("player_id"),
+                chat_msg: e.target.value
+            }) });
+            e.target.value = "";
+            onChange("");
+        }
+    }
     return (
         <textarea 
             maxLength="10000" 
             className="player-hint-box" 
             id="player-input" 
             onChange={handleChange}
-            defaultValue="A monad is just a monoid in the category of endofunctors."> 
+            onKeyDown={onHintKeydown}
+            defaultValue="A monad is just a monoid in the category of endofunctors."
+            disabled={!enabled}> 
         </textarea>
     );
 };
 
 function HintOutput({ outputHint }) {
-    console.log(outputHint);
     return (
         <textarea
             className="player-hint-box"
@@ -71,17 +61,105 @@ function HintOutput({ outputHint }) {
     )
 }
 
+function PlayerThumbnail({ player }) {
+    return (
+        <div className="player-thumbnail">
+            <img src={player["icon"]} className="player-icon"></img>
+            <b className='player-nametag'>{player["name"]}<br></br>{player["points"]} points</b>
+        </div>
+    )
+}
+
+function PlayerScoreboard({ playerList }) {
+    const thumbnails = playerList.map((person) =>
+        <PlayerThumbnail player={person} />
+    );
+    return (
+        <div id="players-box">
+            {thumbnails}
+        </div>
+    );
+}
+
+function ChatMessage({ chatMsg }) {
+    if (chatMsg[0] == "WIN")
+        return (
+            <a className="chat-message win-chat-message">{chatMsg[2]}</a>
+        );
+    else if (chatMsg[0] == "HINT")
+        return (
+            <a className="chat-message highlighted-chat-message">
+                <b>{chatMsg[1]}</b>
+                <a>: {chatMsg[2]}</a>
+            </a>
+        );
+    else
+        return (
+            <a className="chat-message">
+                <b>{chatMsg[1]}</b>
+                <a>: {chatMsg[2]}</a>
+            </a>
+        )
+}
+
+function ChatHistory({ enabled, chatList }) {
+    const chatBoxes = chatList.map((chat) => 
+        <ChatMessage chatMsg={chat} />
+    );
+    const onChatKeydown = (e) => {
+        if (e.keyCode === 13) {
+            socket.emit('chat', { data: JSON.stringify({
+                player_id: get_cookie("player_id"),
+                chat_msg: e.target.value
+            }) });
+            e.target.value = "";
+        }
+    }
+    return (
+        <div id="player-chat">
+            <input 
+                type="text" 
+                id="chat-input" 
+                spellCheck="true" 
+                onKeyDown={onChatKeydown}
+                disabled={!enabled}>
+            </input>
+            {chatBoxes}
+        </div>
+    );
+}
+
+function LevelHeader({ isIlliterate, targetWord, describer }) {
+    if (!isIlliterate)
+        return (
+            <div id="player-help">
+                {describer} is The Illiterate. Try and guess they word they are describing.
+            </div>
+        )
+    else
+        return (
+            <div id="player-help">
+                It's your turn to be The Illiterate! Your word is: <b>{targetWord}</b>
+            </div>
+        )
+}
+
 var socket = io();
 var ticker = new EventTarget();
 const tickEvent = new Event("tick");
-setInterval(() => { ticker.dispatchEvent(tickEvent) }, 2000);
+setInterval(() => { ticker.dispatchEvent(tickEvent) }, 1000);
 
 function App() {
     const defaultString = "A monad is just a monoid in the category of endofunctors."
 
     const [hintInString, setHintInString] = React.useState(defaultString);
     const [hintOutString, setHintOutString] = React.useState("");
+    const [chatInString, setChatInString] = React.useState("");
+    const [playerList, setPlayerList] = React.useState([]);
     const [chatMessages, setChatMessages] = React.useState([]);
+    const [isCurrentPlayer, setIsCurrentPlayer] = React.useState(false);
+    const [targetWord, setTargetWord] = React.useState("");
+    const [describer, setDescriber] = React.useState("");
 
     const [gameData, setGameData] = React.useState({});
 
@@ -98,7 +176,16 @@ function App() {
     const onUpdate = (data) => {
         var data_dict = JSON.parse(data);
         setHintOutString(data_dict["desc_field"]);
+        setPlayerList(data_dict["players"]);
         setChatMessages(data_dict["chat"]);
+        setDescriber(data_dict["describer"]);
+        if ("target_word" in data_dict) {
+            setTargetWord(data_dict["target_word"]);
+            setIsCurrentPlayer(true);
+        } else {
+            setTargetWord("");
+            setIsCurrentPlayer(false);
+        }
     }
 
     React.useEffect(() => {
@@ -113,9 +200,13 @@ function App() {
 
     return (
         <div>
-            <HintInput enabled={true} onChange={setHintInString} />
+            <LevelHeader isIlliterate={isCurrentPlayer} targetWord={targetWord} describer={describer} />
+            <HintInput enabled={isCurrentPlayer} onChange={setHintInString} />
             <HintOutput outputHint={hintOutString} />
-            <img src='/static/icon_1.png'></img>
+            <div id="chat-section-container">
+                <PlayerScoreboard playerList={playerList} />
+                <ChatHistory enabled={!isCurrentPlayer} chatList={chatMessages} />
+            </div>
         </div>
     );
 };
