@@ -24,12 +24,20 @@ body {
     border-radius: 10px;
 }
 
-.game-text-box {
-    width: 49%;
+.player-hint-box {
+    width: 45%;
     display: inline-block;
     font-family: Menlo;
     font-size: 16px;
     height: 100px;
+}
+
+#player-input {
+    float: left;
+}
+
+#player-output {
+    float: right;
 }
 
 .chat-message {

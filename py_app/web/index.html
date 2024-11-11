@@ -1,0 +1,76 @@
+<head>
+    <link rel='stylesheet' type="text/css" href="/static/style.css"/>
+</head>
+<body>
+    <div id="welcome-div">
+    <h1>Abstractionary</h1>
+
+    <p>Welcome to Abstractionary! There are currently <b>{{ active_games }}</b> active games.</p>
+
+    <p>Abstractionary is a game where you have to skeblaq a twugles using only the most simple swukixi.</p>
+
+    <p>If you use swukixi that are not simple enough, they will be qustu with ketwubl.</p>
+
+    <p>When it is not your turn, another ruxa will try to make you guess their twugles.</p>
+
+    <p>Good luck!</p>
+    </div>
+
+    <div id="play-game-div">
+    <form method="get" action="/newgame">
+        <details>
+        <summary>Customize your wordlist</summary>
+        <ul>
+            <li><input type="checkbox" id="uncommon-cb" name="uncommon" checked/> Uncommon English words</li>
+            <li><input type="checkbox" id="common-cb" name="common"/> Common English words</li>
+            <li><input type="checkbox" id="concrete-cb" name="concrete"/> Concrete English words</li>
+            <li><input type="checkbox" id="adjectives-cb" name="adjectives"/> Adjectives</li>
+            <li><input type="checkbox" id="googles-cb" name="googles"/> Common Google searches</li>
+            <li><input type="checkbox" id="locations-cb" name="locations"/> Kinds of places</li>
+            <li><input type="checkbox" id="foods-cb" name="foods"/> Foods</li>
+            <li><input type="checkbox" id="household-cb" name="household" checked/> Household items</li>
+            <li><input type="checkbox" id="countries-cb" name="countries"/> Countries</li>
+            <li><input type="checkbox" id="celebrities-cb" name="celebrities"/> Celebrities</li>
+            <li><input type="checkbox" id="abstract-cb" name="abstract" checked/> Abstract concepts</li>
+            <li><input type="checkbox" id="sex-cb" name="sex"/> Sex and gender words</li>
+            
+            <li><input type="checkbox" id="techno-cb" name="techno"/> Software and IT words</li>
+            <li><input type="checkbox" id="legal-cb" name="legal"/> Politics, law and crime words</li>
+            <li><input type="checkbox" id="biology-cb" name="biology"/> Health and biology words</li>
+            <li><input type="checkbox" id="art-cb" name="art"/> Music, art and literature words</li>
+            <li><input type="checkbox" id="money-cb" name="money"/> Finance and economics words</li>
+            <li><input type="checkbox" id="engineer-cb" name="engineer"/> Physics and engineering words</li>
+            <li><input type="checkbox" id="adulting-cb" name="adulting"/> "Adulting" words</li>
+        </ul>
+        </details>
+        
+        <details>
+        <summary>Customize game difficulty</summary>
+        <ul>
+            <li>
+                <input type="radio" id="difficulty-choice-easy" name="difficulty" value="easy" />
+                <label for="difficulty-choice-easy">Easy</label>    
+            </li>
+            <li>
+                <input type="radio" id="difficulty-choice-medium" name="difficulty" value="medium" checked/>
+                <label for="difficulty-choice-easy">Medium</label> 
+            </li>
+            <li>
+                <input type="radio" id="difficulty-choice-hard" name="difficulty" value="hard" />
+                <label for="difficulty-choice-easy">Hard</label>
+            </li>
+            <li> 
+                <input type="radio" id="difficulty-choice-insane" name="difficulty" value="insane" />
+                <label for="difficulty-choice-easy">Insane</label>
+            </li>
+            <li>
+                <input type="radio" id="difficulty-choice-impossible" name="difficulty" value="impossible" />
+                <label for="difficulty-choice-easy">Category theorist</label>
+            </li> 
+        </ul>
+        </details>
+
+        <input type="submit" value="Let's play!"/>
+    </form>
+    </div>
+</body>
