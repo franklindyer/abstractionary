@@ -58,6 +58,9 @@ class ServerGame:
     def active_player(self):
         return self.player_list[self.active_player_index]
 
+    def get_teaser(self):
+        return f"Guess the phrase '{self.tf.filter(self.target_word)}'"
+
     def add_player(self):
         new_player = ClientPlayer()
         self.players[new_player.id] = new_player

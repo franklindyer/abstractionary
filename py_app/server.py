@@ -15,8 +15,11 @@ from WordGenerator import *
 wr = WordRanker()
 wr.ingest_data("data/concreteness-ranking.txt")
 
+MAX_PLAYERS_PER_GAME = 6
+
 game_map = {}
 player_to_game_map = {}
+public_games = []
 
 def build_new_game(category_list, difficulty):
     wt = FakeWordTranslator()
@@ -33,6 +36,8 @@ def purge_games():
         if len(game.player_list) == 0:
             deleted_ids = deleted_ids + [game.id]
             del game_map[k]
+            if game in public_games:
+                public_games.remove(game)
     for pid in player_to_game_map:
         if player_to_game_map[pid].id in deleted_ids:
             del player_to_game_map[pid]
@@ -42,7 +47,7 @@ socketio = SocketIO(app)
 
 @app.route('/')
 def serve_index():
-    return render_template("index.html", active_games = len(game_map.keys()))
+    return render_template("index.html", active_games = len(game_map.keys()), public_games=public_games)
 
 @app.route('/static/<path:path>')
 def serve_file(path):
@@ -56,10 +61,13 @@ def serve_new_game():
         if game_map[game_id].clean_inactive_players():
             del game_map[game_id]
     response = make_response(redirect('/game'))
-    categories = [k for k in request.args.to_dict().keys() if k in generator_map.keys()]
+    query_args = request.args.to_dict()
+    categories = [k for k in query_args.keys() if k in generator_map.keys()]
     difficulty = request.args.get('difficulty', 1)
     new_game = build_new_game(categories, difficulty)
     game_map[new_game.id] = new_game
+    if "public" in query_args and query_args["public"] == "on":
+        public_games.append(new_game)
     player_id = new_game.add_player()
     player_to_game_map[player_id] = new_game
     response.set_cookie("player_id", player_id)
@@ -75,6 +83,8 @@ def serve_join_game(game_id):
             player_to_game_map[prev_id].delete_player(prev_id)
             del player_to_game_map[prev_id]
     game = game_map[game_id]
+    if len(game.player_list) >= MAX_PLAYERS_PER_GAME:
+        return make_response("Sorry, that game is full at the moment.", 403)
     game.lock.acquire()
     player_id = game.add_player()
     game.lock.release()

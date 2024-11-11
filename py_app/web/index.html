@@ -14,6 +14,16 @@
     <p>When it is not your turn, another ruxa will try to make you guess their twugles.</p>
 
     <p>Good luck!</p>
+
+    <details>
+    <summary>View a list of public games</summary>
+    <ul>
+        {% for game in public_games %}
+        <li><a href="/join/{{ game.id }}">{{ game.get_teaser() }}</a></li>
+        {% endfor %}
+    </ul>
+    </details>
+
     </div>
 
     <div id="play-game-div">
@@ -69,6 +79,9 @@
             </li> 
         </ul>
         </details>
+
+        <input type="checkbox" id="public-cb" name="public"/>
+        <label for="public">Open to the public?</label>
 
         <input type="submit" value="Let's play!"/>
     </form>
