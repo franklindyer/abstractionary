@@ -36,6 +36,9 @@ class AbsServiceManager:
 
     def add_game(self, category_list, difficulty, public=False):
         self.lock.acquire()
+        if len(self.game_map.keys()) >= MAX_GAMES:
+            self.lock.release()
+            return None
         new_game = self.build_game(category_list, difficulty)
         self.game_map[new_game.id] = new_game
         if public:
@@ -117,6 +120,8 @@ def serve_new_game():
     categories = [k for k in query_args.keys() if k in generator_map.keys()]
     difficulty = request.args.get('difficulty', 1)
     player_id = sm.add_game(categories, difficulty, public=(query_args.get("public") == 'on'))
+    if player_id is None:
+        return make_response("Cannot make game. Try again later!", 403)
     response.set_cookie("player_id", player_id)
     return response
 
