@@ -35,32 +35,27 @@ class AbsServiceManager:
         return ServerGame(text_filter, word_generator)
 
     def add_game(self, category_list, difficulty, public=False):
-        self.lock.acquire()
-        if len(self.game_map.keys()) >= MAX_GAMES:
-            self.lock.release()
-            return None
-        new_game = self.build_game(category_list, difficulty)
-        self.game_map[new_game.id] = new_game
-        if public:
-            self.public_games.append(new_game)
-        player_id = new_game.add_player()
-        self.player_to_game_map[player_id] = new_game
-        self.lock.release()
+        with self.lock:
+            if len(self.game_map.keys()) >= MAX_GAMES:
+                return None
+            new_game = self.build_game(category_list, difficulty)
+            self.game_map[new_game.id] = new_game
+            if public:
+                self.public_games.append(new_game)
+            player_id = new_game.add_player()
+            self.player_to_game_map[player_id] = new_game
         return player_id
 
     def add_player(self, prev_pid, gid):
-        self.lock.acquire()
-        if not gid in self.game_map:
-            self.lock.release()
-            return None
-        if prev_pid is not None and prev_pid in self.player_to_game_map:
-            self.player_to_game_map[prev_pid].delete_player(prev_pid)
-            del self.player_to_game_map[prev_pid]
-        game = self.game_map[gid]
-        if len(game.player_list) >= MAX_PLAYERS_PER_GAME:
-            self.lock.release()
-            return None
-        self.lock.release()
+        with self.lock:
+            if not gid in self.game_map:
+                return None
+            if prev_pid is not None and prev_pid in self.player_to_game_map:
+                self.player_to_game_map[prev_pid].delete_player(prev_pid)
+                del self.player_to_game_map[prev_pid]
+            game = self.game_map[gid]
+            if len(game.player_list) >= MAX_PLAYERS_PER_GAME:
+                return None
         
         with game.lock:
             player_id = game.add_player()
@@ -73,30 +68,27 @@ class AbsServiceManager:
         return self.public_games
 
     def purge_games(self):
-        self.lock.acquire()
-        deleted_ids = []
-        for k in self.game_map:
-            game = self.game_map[k]
-            if len(game.player_list) == 0:
-                deleted_ids = deleted_ids + [game.id]
-                del game_map[k]
-                if game in self.public_games:
-                    self.public_games.remove(game)
-        for pid in self.player_to_game_map:
-            if self.player_to_game_map[pid].id in deleted_ids:
-                del player_to_game_map[pid]
-        self.lock.release()
+        with self.lock:
+            deleted_ids = []
+            for k in self.game_map:
+                game = self.game_map[k]
+                if len(game.player_list) == 0:
+                    deleted_ids = deleted_ids + [game.id]
+                    del self.game_map[k]
+                    if game in self.public_games:
+                        self.public_games.remove(game)
+            for pid in self.player_to_game_map:
+                if self.player_to_game_map[pid].id in deleted_ids:
+                    del self.player_to_game_map[pid]
 
     def get_game_with_id(self, gid):
-        self.lock.acquire()
-        game = self.game_map.get(gid)
-        self.lock.release()
+        with self.lock:
+            game = self.game_map.get(gid)
         return game
 
     def get_game_with_player(self, pid):
-        self.lock.acquire()
-        game = self.player_to_game_map.get(pid)
-        self.lock.release()
+        with self.lock:
+            game = self.player_to_game_map.get(pid)
         return game
 
 sm = AbsServiceManager()
