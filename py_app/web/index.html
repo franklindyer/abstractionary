@@ -15,6 +15,7 @@
 
     <p>Good luck!</p>
 
+    {% if public_games|length > 0 %}
     <details>
     <summary>View a list of public games</summary>
     <ul>
@@ -23,12 +24,13 @@
         {% endfor %}
     </ul>
     </details>
+    {% endif %}
 
     </div>
 
     <div id="play-game-div">
     <form method="get" action="/newgame">
-        <details>
+        <details class="game-options-dropdown">
         <summary>Customize your wordlist</summary>
         <ul>
             <li><input type="checkbox" id="uncommon-cb" name="uncommon" checked/> Uncommon English words</li>
@@ -54,7 +56,7 @@
         </ul>
         </details>
         
-        <details>
+        <details class="game-options-dropdown">
         <summary>Customize game difficulty</summary>
         <ul>
             <li>
