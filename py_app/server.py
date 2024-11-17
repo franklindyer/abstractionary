@@ -115,7 +115,7 @@ def serve_new_game():
     difficulty = request.args.get('difficulty', 1)
     player_id = sm.add_game(categories, difficulty, public=(query_args.get("public") == 'on'))
     if player_id is None:
-        return make_response("Cannot make game. Try again later!", 403)
+        return abort(403, "Cannot make game. Try again later!")
     response.set_cookie("player_id", player_id)
     return response
 
@@ -123,11 +123,11 @@ def serve_new_game():
 def serve_join_game(game_id):
     user_agent = request.headers.get("User-Agent")
     if "bot" in user_agent.lower():
-        return make_response("Cannot join the game as a robot. Sorry!", 403)
+        return abort(403, "Cannot join the game as a robot. Sorry!")
     prev_id = request.cookies.get("player_id")
     player_id = sm.add_player(prev_id, game_id)
     if player_id is None:
-        return make_response("Cannot join game. It may be full, or may not exist.", 403) 
+        return abort(403, "Cannot join game. It may be full, or may not exist.") 
     response = make_response(redirect('/game'))
     response.set_cookie("player_id", player_id)
     return response
@@ -145,10 +145,22 @@ def serve_history():
     player_id = request.cookies.get("player_id")
     game = sm.get_game_with_player(player_id)
     if game is None:
-        return make_response("History not found.", 404)
+        return abort(404, "History not found.")
     resp = response = make_response(game.get_history(), 200)
     resp.mimetype = "text/plain"
     return resp
+
+ERROR_PICS = [
+    "icon_13.png", "icon_23.png", "icon_27.png", "icon_31.png", "icon_45.png", "icon_64.png", 
+    "icon_66.png", "icon_70.png", "icon_73.png", "icon_118.png", "icon_132.png", "icon_148.png",
+    "icon_167.png", "icon_177.png", "icon_194.png", "icon_197.png", "icon_204.png", "icon_223.png"
+]
+
+@app.errorhandler(Exception)
+def handle_error(e):
+    err_img = random.choice(ERROR_PICS)
+    desc = e.description
+    return render_template("error.html", error_code=e.code, error_img=err_img, error_msg=desc)
 
 @socketio.on('connect')
 def socket_connect():
