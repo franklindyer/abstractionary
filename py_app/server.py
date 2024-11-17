@@ -1,4 +1,5 @@
-from flask import Flask, make_response, redirect, render_template, request, send_from_directory
+from flask import Flask, make_response, redirect, render_template, request, send_from_directory, abort
+from werkzeug.exceptions import HTTPException
 from flask_socketio import emit, SocketIO
 import json
 from threading import Lock
@@ -156,7 +157,7 @@ ERROR_PICS = [
     "icon_167.png", "icon_177.png", "icon_194.png", "icon_197.png", "icon_204.png", "icon_223.png"
 ]
 
-@app.errorhandler(Exception)
+@app.errorhandler(HTTPException)
 def handle_error(e):
     err_img = random.choice(ERROR_PICS)
     desc = e.description
