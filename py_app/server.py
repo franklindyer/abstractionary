@@ -119,6 +119,9 @@ def serve_new_game():
 
 @app.route('/join/<game_id>')
 def serve_join_game(game_id):
+    user_agent = request.headers.get("User-Agent")
+    if "bot" in user_agent.lower():
+        return make_response("Cannot join the game as a robot. Sorry!", 403)
     prev_id = request.cookies.get("player_id")
     player_id = sm.add_player(prev_id, game_id)
     if player_id is None:
