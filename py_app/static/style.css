@@ -142,3 +142,25 @@ body {
     margin-bottom: 2px;
     list-style-type: none;
 }
+
+#lets-play-btn {
+    all: unset;
+    padding: 5px;
+    border-radius: 4px;
+    background-color: #FFB6C1;
+    font-family: Menlo;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    box-shadow: 0 9px #DD94A0;
+}
+
+#lets-play-btn:hover {
+    background-color: #EEA5B0;
+}
+
+#lets-play-btn:active {
+    background-color: #EEA5B0;
+    box-shadow: 0 5px #DD94A0;
+    transform: translateY(4px);
+}

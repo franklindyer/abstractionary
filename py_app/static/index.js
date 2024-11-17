@@ -139,7 +139,7 @@ function LevelHeader({ isIlliterate, targetWord, describer }) {
     else
         return (
             <div id="player-help">
-                It's your turn to be The Illiterate! Your word is: <b>{targetWord}</b>
+                It's your turn to be The Illiterate! Make the other player guess the phrase: <b>{targetWord}</b> 
             </div>
         )
 }
