@@ -133,7 +133,7 @@ function LevelHeader({ isIlliterate, targetWord, describer }) {
     if (!isIlliterate)
         return (
             <div id="player-help">
-                {describer} is The Illiterate. Try and guess they word they are describing.
+                {describer} is The Illiterate. Try and guess the word they are describing.
             </div>
         )
     else
