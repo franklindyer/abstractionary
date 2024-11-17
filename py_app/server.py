@@ -70,14 +70,16 @@ class AbsServiceManager:
     def purge_games(self):
         with self.lock:
             deleted_ids = []
-            for k in self.game_map:
+            game_ids = [k for k in self.game_map.keys()]
+            for k in game_ids:
                 game = self.game_map[k]
                 if len(game.player_list) == 0:
                     deleted_ids = deleted_ids + [game.id]
                     del self.game_map[k]
                     if game in self.public_games:
                         self.public_games.remove(game)
-            for pid in self.player_to_game_map:
+            player_ids = [p for p in self.player_to_game_map.keys()]
+            for pid in player_ids:
                 if self.player_to_game_map[pid].id in deleted_ids:
                     del self.player_to_game_map[pid]
 
