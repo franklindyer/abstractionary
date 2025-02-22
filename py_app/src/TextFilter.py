@@ -1,5 +1,8 @@
 import math
+import pyphen
 import re
+
+from WordTranslator import TrivialTranslator
 
 class TextToken:
     def __init__(self, body, pre="", post=""):
@@ -77,10 +80,12 @@ class TextFilter:
         return ''.join([tt.combine() for tt in tokens])
 
 class MonosyllabicFilter:
-    def __init__(self, word_translator):
+    def __init__(self, word_ranker, word_translator):
         self.blacklist = []
-        self.wt = word_translator        
+        self.wr = word_ranker
+        self.wt = word_translator     
         self.rank_bound = -1
+        self.hyphenator = pyphen.Pyphen(lang="en_US")
 
     def set_difficulty(self, diff_string):
         return
@@ -106,15 +111,25 @@ class MonosyllabicFilter:
         return tokens
 
     def num_sylls(self, wd):
-        hyphenated = pyphen.Pyphen()
+        hyphenated = self.hyphenator.inserted(wd)
+        return len(hyphenated.split('-'))
 
     def translate_text(self, tokens):
         # print([tt.body for tt in tokens])
         return [TextToken(self.wt.translate(tt.body), pre=tt.pre, post=tt.post) 
-                if (self.wr.lookup_index(tt.body) or math.inf) > self.rank_bound
+                if (self.wr.lookup_index(tt.body) == None)
                 or tt.body in self.blacklist
+                or self.num_sylls(tt.body) > 1
                 else tt 
                 for tt in tokens]
 
     def reassemble_text(self, tokens):
         return ''.join([tt.combine() for tt in tokens])
+
+def make_filter_of_type(filter_type, wr, wt):
+    if filter_type in ["easy", "medium", "hard", "insane", "impossible"]:
+        tf = TextFilter(wr, wt)
+        tf.set_difficulty(filter_type)
+        return tf
+    elif filter_type == "caveman":
+        return MonosyllabicFilter(wr, TrivialTranslator())

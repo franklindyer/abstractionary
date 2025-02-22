@@ -5,7 +5,10 @@ class TrivialTranslator:
         return
 
     def translate(self, word):
-        return "___"
+        return "_"
+
+    def reset(self):
+        return
 
 class FakeWordTranslator:
     def __init__(self):

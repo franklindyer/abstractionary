@@ -30,8 +30,9 @@ class AbsServiceManager:
     def build_game(self, category_list, difficulty):
         wt = FakeWordTranslator()
         wt.ingest_data("data/refined_non_english_words.txt")
-        text_filter = TextFilter(wr, wt)
-        text_filter.set_difficulty(difficulty)
+        # text_filter = TextFilter(wr, wt)
+        # text_filter.set_difficulty(difficulty)
+        text_filter = make_filter_of_type(difficulty, wr, wt)
         word_generator = CombinedWordGenerator(category_list)
         return ServerGame(text_filter, word_generator)
 
