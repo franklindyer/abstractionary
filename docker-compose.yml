@@ -4,7 +4,7 @@ services:
             context: .
         volumes:
             - ./history:/app/history
-            - ./web:/app/web
-            - ./data:/app/data
+            - ./py_app/web:/app/web
+            - ./py_app/static:/app/static
         ports:
             - 5001:5001

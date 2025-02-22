@@ -76,3 +76,45 @@ class TextFilter:
     def reassemble_text(self, tokens):
         return ''.join([tt.combine() for tt in tokens])
 
+class MonosyllabicFilter:
+    def __init__(self, word_translator):
+        self.blacklist = []
+        self.wt = word_translator        
+        self.rank_bound = -1
+
+    def set_difficulty(self, diff_string):
+        return
+
+    def set_target_phrase(self, target_phrase):
+        self.blacklist = [wd.strip() for wd in target_phrase.split(' ')]
+
+    def filter(self, txt):
+        return self.reassemble_text(self.translate_text(self.tokenize_text(txt)))
+
+    def tokenize_text(self, txt):
+        txt_split = re.split(r"(\s+)", txt.strip()) + [""]
+        i = 0
+        tokens = []
+        next_word = ""
+        for w in txt_split:
+            if i % 2 == 0:
+                next_word = w.lower()
+            else:
+                next_tok = TextToken.from_str(next_word + w)
+                tokens = tokens + [next_tok]
+            i += 1 
+        return tokens
+
+    def num_sylls(self, wd):
+        hyphenated = pyphen.Pyphen()
+
+    def translate_text(self, tokens):
+        # print([tt.body for tt in tokens])
+        return [TextToken(self.wt.translate(tt.body), pre=tt.pre, post=tt.post) 
+                if (self.wr.lookup_index(tt.body) or math.inf) > self.rank_bound
+                or tt.body in self.blacklist
+                else tt 
+                for tt in tokens]
+
+    def reassemble_text(self, tokens):
+        return ''.join([tt.combine() for tt in tokens])
