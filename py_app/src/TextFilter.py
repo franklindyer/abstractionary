@@ -1,6 +1,10 @@
 import math
-import pyphen
 import re
+
+import nltk
+from nltk.corpus import cmudict
+nltk.download("cmudict")
+cmudict_d = cmudict.dict()
 
 from WordTranslator import TrivialTranslator
 
@@ -85,7 +89,6 @@ class MonosyllabicFilter:
         self.wr = word_ranker
         self.wt = word_translator     
         self.rank_bound = -1
-        self.hyphenator = pyphen.Pyphen(lang="en_US")
 
     def set_difficulty(self, diff_string):
         return
@@ -111,8 +114,9 @@ class MonosyllabicFilter:
         return tokens
 
     def num_sylls(self, wd):
-        hyphenated = self.hyphenator.inserted(wd)
-        return len(hyphenated.split('-'))
+        # hyphenated = self.hyphenator.inserted(wd)
+        # return len(hyphenated.split('-'))
+        return [len(list(y for y in x if y[-1].isdigit())) for x in cmudict_d[wd.lower()]][0] == 1 
 
     def translate_text(self, tokens):
         # print([tt.body for tt in tokens])
