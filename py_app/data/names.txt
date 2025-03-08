@@ -1,0 +1,741 @@
+Adele
+Al Pacino
+Ariana Grande
+Arnold Schwarzenegger
+Barbra Streisand
+Barack Obama
+Beyoncé
+Bill Gates
+Billie Eilish
+Brad Pitt
+Britney Spears
+Bruce Springsteen
+Bruno Mars
+Cameron Diaz
+Cardi B
+Celine Dion
+Charlie Chaplin
+Cher
+Chris Hemsworth
+Chris Pratt
+Christian Bale
+Clint Eastwood
+Cristiano Ronaldo
+Daniel Craig
+David Beckham
+Demi Lovato
+Denzel Washington
+Diana Ross
+Drake
+Dwayne Johnson
+Ed Sheeran
+Eddie Murphy
+Elon Musk
+Elton John
+Elvis Presley
+Emma Stone
+Emma Watson
+Frank Sinatra
+Gal Gadot
+George Clooney
+George Lucas
+Harrison Ford
+Hugh Jackman
+Jack Nicholson
+Jackie Chan
+James Cameron
+James Dean
+James Franco
+James Stewart
+Jennifer Aniston
+Jennifer Lawrence
+Jerry Seinfeld
+Jim Carrey
+Jimmy Fallon
+John Legend
+Johnny Depp
+Justin Bieber
+Justin Timberlake
+Kanye West
+Katy Perry
+Keanu Reeves
+Kendrick Lamar
+Kobe Bryant
+Lady Gaga
+LeBron James
+Leonardo DiCaprio
+Liam Neeson
+Madonna
+Mariah Carey
+Marilyn Monroe
+Mark Wahlberg
+Matt Damon
+Meghan Markle
+Mel Gibson
+Michael B. Jordan
+Michael Jackson
+Michael Jordan
+Mick Jagger
+Miley Cyrus
+Morgan Freeman
+Natalie Portman
+Oprah Winfrey
+Paul McCartney
+Prince
+Quentin Tarantino
+Rihanna
+Robert De Niro
+Robert Downey Jr.
+Robin Williams
+Sandra Bullock
+Scarlett Johansson
+Selena Gomez
+Shakira
+Shawn Mendes
+Simon Cowell
+Steven Spielberg
+Taylor Swift
+Tom Cruise
+Tom Hanks
+Tom Holland
+Tom Brady
+Vin Diesel
+Will Smith
+Abraham Lincoln  
+Alexander Graham Bell  
+Alexander Hamilton  
+Alice Paul  
+Andrew Carnegie  
+Andrew Jackson  
+Barack Obama  
+Benjamin Franklin  
+Betsy Ross  
+Booker T. Washington  
+Cesar Chavez  
+Charles Lindbergh  
+Clara Barton  
+Dale Carnegie  
+Daniel Boone  
+Daniel Webster  
+Davy Crockett  
+Douglas MacArthur  
+Dwight D. Eisenhower  
+Eleanor Roosevelt  
+Elon Musk  
+Elizabeth Cady Stanton  
+Elvis Presley  
+Emily Dickinson  
+Ernest Hemingway  
+Frank Lloyd Wright  
+Franklin D. Roosevelt  
+Frederick Douglass  
+George H.W. Bush  
+George Patton  
+George Washington  
+Geronimo  
+Harriet Beecher Stowe  
+Harriet Tubman  
+Helen Keller  
+Henry Ford  
+Herbert Hoover  
+Howard Hughes  
+Jackie Robinson  
+James Madison  
+J.D. Rockefeller  
+J.P. Morgan  
+Jesse Owens  
+John Adams  
+John Brown  
+John D. Rockefeller  
+John F. Kennedy  
+John Glenn  
+John Hancock  
+John Jay  
+John Marshall  
+John Muir  
+John Quincy Adams  
+John Steinbeck  
+Jonas Salk  
+Joseph Smith  
+Langston Hughes  
+Leonard Bernstein  
+Lewis and Clark  
+Louis Armstrong  
+Lyndon B. Johnson  
+Malcolm X  
+Mark Twain  
+Martin Luther King Jr.  
+Meriwether Lewis  
+Meriwether Lewis and William Clark  
+Muhammad Ali  
+Nathaniel Hawthorne  
+Neil Armstrong  
+Nikola Tesla  
+Orville and Wilbur Wright  
+Patrick Henry  
+Paul Revere  
+Peyton Randolph  
+Philip Sheridan  
+Ralph Waldo Emerson  
+Richard Nixon  
+Robert E. Lee  
+Robert Oppenheimer  
+Ronald Reagan  
+Rosa Parks  
+Sacagawea  
+Samuel Adams  
+Samuel Morse  
+Sandra Day O’Connor  
+Sojourner Truth  
+Stephen Hawking  
+Susan B. Anthony  
+Tecumseh  
+Theodore Roosevelt  
+Thomas Edison  
+Thomas Jefferson  
+Thurgood Marshall  
+Ulysses S. Grant  
+Walt Disney  
+Warren Buffett  
+W.E.B. Du Bois  
+William Henry Harrison  
+William Jennings Bryan  
+William Penn  
+William Tecumseh Sherman  
+Woodrow Wilson  
+Zachary Taylor  
+Adolf Hitler  
+Angela Merkel  
+Anne Frank  
+Benito Mussolini  
+Boris Yeltsin  
+Charlie Chaplin  
+Charles de Gaulle  
+David Ben-Gurion  
+Deng Xiaoping  
+Emperor Hirohito  
+Fidel Castro  
+Francisco Franco  
+Franz Ferdinand  
+Franz Kafka  
+Friedrich Nietzsche  
+Gavrilo Princip  
+Golda Meir  
+Ho Chi Minh  
+Immanuel Kant  
+Joseph Stalin  
+Julius Evola  
+Kim Il-sung  
+Kim Jong-il  
+Kim Jong-un  
+Konrad Adenauer  
+Lech Wałęsa  
+Leo Tolstoy  
+Leon Trotsky  
+Ludwig van Beethoven  
+Ludwig Wittgenstein  
+Mahatma Gandhi  
+Mao Zedong  
+Margaret Thatcher  
+Marie Curie  
+Mikhail Gorbachev  
+Mustafa Kemal Atatürk  
+Napoleon Bonaparte  
+Nicolae Ceaușescu  
+Niels Bohr  
+Nikola Tesla  
+Otto von Bismarck  
+Pablo Picasso  
+Pope Benedict XVI  
+Pope Francis  
+Pope John Paul II  
+Prince Philip  
+Queen Elizabeth II  
+Queen Victoria  
+Rasputin  
+Recep Tayyip Erdoğan  
+Richard Wagner  
+Rudyard Kipling  
+Salvador Dalí  
+Sigmund Freud  
+Slobodan Milošević  
+Sun Yat-sen  
+Sukarno  
+Syngman Rhee  
+Theresa May  
+Tokugawa Yoshinobu  
+Tony Blair  
+Tsar Nicholas II  
+Vladimir Lenin  
+Vladimir Putin  
+Volodymyr Zelenskyy  
+Wernher von Braun  
+Winston Churchill  
+Xi Jinping  
+Zhou Enlai  
+Sherlock Holmes
+Harry Potter
+James Bond
+Superman
+Batman
+Spider-Man
+Mickey Mouse
+Darth Vader
+Luke Skywalker
+Indiana Jones
+Frodo Baggins
+Gandalf
+Dracula
+Frankenstein's Monster
+Wonder Woman
+Captain America
+Iron Man
+Hulk
+Wolverine
+Robin Hood
+Tarzan
+King Arthur
+Hercules
+Zorro
+Peter Pan
+Winnie the Pooh
+Snoopy
+Charlie Brown
+Bugs Bunny
+Homer Simpson
+Bart Simpson
+Marge Simpson
+Lisa Simpson
+Maggie Simpson
+Yoda
+Han Solo
+Princess Leia
+Chewbacca
+R2-D2
+C-3PO
+Optimus Prime
+Megatron
+Shrek
+Donkey
+Fiona
+Simba
+Mufasa
+Aladdin
+Jasmine
+Genie
+Ariel
+Ursula
+Belle
+Beast
+Cinderella
+Snow White
+Rapunzel
+Pinocchio
+The Joker
+Harley Quinn
+Catwoman
+Riddler
+Lex Luthor
+Professor X
+Magneto
+Storm
+Jean Grey
+Cyclops
+The Flash
+Green Lantern
+Aquaman
+Black Panther
+Deadpool
+Captain Jack Sparrow
+Gollum
+Voldemort
+Hermione Granger
+Ron Weasley
+Dr. Jekyll
+Mr. Hyde
+The Little Mermaid
+Elsa
+Anna
+Maleficent
+The Wicked Witch of the West
+Puss in Boots
+Jack Skellington
+Sally
+Cruella de Vil
+The Grinch
+Scar
+Rikki-Tikki-Tavi
+The Mad Hatter
+Alice
+Dumbo
+Bambi
+Pinocchio
+E.T.
+The Terminator
+John Wick
+Skeeter
+Buzz Lightyear
+Woody
+Pikachu
+Ash Ketchum
+SpongeBob SquarePants
+Patrick Star
+Tom
+Jerry
+The Godfather
+The Shawshank Redemption
+The Dark Knight
+Pulp Fiction
+Schindler's List
+Forrest Gump
+The Lord of the Rings: The Return of the King
+The Empire Strikes Back
+Inception
+Fight Club
+The Matrix
+Goodfellas
+Star Wars: A New Hope
+The Silence of the Lambs
+The Green Mile
+Gladiator
+Casablanca
+Citizen Kane
+Gone with the Wind
+The Wizard of Oz
+Pulp Fiction
+Titanic
+The Godfather Part II
+The Lion King
+Back to the Future
+Jurassic Park
+The Avengers
+The Terminator
+E.T. the Extra-Terrestrial
+Jaws
+Forrest Gump
+Schindler's List
+The Dark Knight Rises
+Pulp Fiction
+The Good, the Bad and the Ugly
+The Great Escape
+Saving Private Ryan
+12 Angry Men
+One Flew Over the Cuckoo's Nest
+Star Wars: The Force Awakens
+The Prestige
+The Shining
+A Clockwork Orange
+Dr. Strangelove
+Gone with the Wind
+The Social Network
+The Departed
+La La Land
+The Pianist
+American History X
+The Intouchables
+The Grand Budapest Hotel
+The Revenant
+The Godfather Part III
+The Sixth Sense
+The Incredibles
+The Big Lebowski
+The Usual Suspects
+The Truman Show
+The Shape of Water
+Shutter Island
+Toy Story
+Toy Story 3
+Deadpool
+Mad Max: Fury Road
+Avatar
+The Hunger Games
+Interstellar
+The Matrix Reloaded
+The Matrix Revolutions
+Star Wars: Return of the Jedi
+A Beautiful Mind
+The Iron Giant
+The Exorcist
+The French Connection
+The Big Short
+The Wolf of Wall Street
+The Mummy
+The Dark Knight Returns
+The Incredibles 2
+Jumanji: Welcome to the Jungle
+Star Wars: The Last Jedi
+The Princess Bride
+The Lord of the Rings: The Fellowship of the Ring
+The Goodfellas
+The Godfather Part II
+The Hobbit: An Unexpected Journey
+Gladiator
+The Great Gatsby
+The Nightmare Before Christmas
+The Lion King
+The Texas Chain Saw Massacre
+The Breakfast Club
+The Shining
+The Conjuring
+A Quiet Place
+The Handmaiden
+The Godfather Part II
+The Matrix
+Don Quixote
+Moby-Dick
+War and Peace
+Pride and Prejudice
+The Great Gatsby
+1984
+To Kill a Mockingbird
+The Catcher in the Rye
+The Lord of the Rings
+The Hobbit
+The Bible
+The Odyssey
+The Divine Comedy
+Crime and Punishment
+One Hundred Years of Solitude
+Ulysses
+The Brothers Karamazov
+The Catcher in the Rye
+Wuthering Heights
+Frankenstein
+The Grapes of Wrath
+The Canterbury Tales
+The Chronicles of Narnia
+Brave New World
+The Picture of Dorian Gray
+Jane Eyre
+The Hobbit
+Anna Karenina
+Les Misérables
+A Tale of Two Cities
+The Old Man and the Sea
+The Call of the Wild
+The Jungle
+The Diary of Anne Frank
+The Book Thief
+Fahrenheit 451
+Slaughterhouse-Five
+The Shining
+Alice's Adventures in Wonderland
+Dracula
+The Road
+The Hunger Games
+The Kite Runner
+Harry Potter and the Sorcerer's Stone
+The Da Vinci Code
+Lord of the Flies
+The Secret Garden
+The Little Prince
+Gone with the Wind
+The Wind in the Willows
+The Adventures of Huckleberry Finn
+Murder on the Orient Express
+The Harry Potter Series
+The Fault in Our Stars
+The Chronicles of Narnia Series
+The Outsiders
+The Harry Potter Series
+The Girl with the Dragon Tattoo
+Catch-22
+The Alchemist
+The Odyssey
+The Shining
+The Count of Monte Cristo
+The Art of War
+The Book of Mormon
+The Divine Comedy
+The Iliad
+A Wrinkle in Time
+The Handmaid's Tale
+Dr. Jekyll and Mr. Hyde
+The Hunger Games Trilogy
+Catch-22
+The Secret Life of Bees
+The Wind in the Willows
+The Bell Jar
+Bridget Jones's Diary
+The Help
+The Color Purple
+The Hobbit
+Murder in the Cathedral
+The Glass Castle
+The Road Less Traveled
+Memoirs of a Geisha
+The Giver
+The Sun Also Rises
+The Handmaid’s Tale
+A Clockwork Orange
+The Godfather
+The Great Expectations
+Atonement
+The Godfather
+The Girl on the Train
+Zeus
+Hera
+Poseidon
+Hades
+Athena
+Apollo
+Artemis
+Ares
+Aphrodite
+Hercules
+Perseus
+Achilles
+Helen of Troy
+Theseus
+Medusa
+Hera
+Hestia
+Demeter
+Hermes
+Eros
+Hecate
+Cronus
+Gaia
+Prometheus
+Pandora
+Orpheus
+Persephone
+Osiris
+Isis
+Ra
+Anubis
+Bastet
+Horus
+Thor
+Odin
+Loki
+Freya
+Fenrir
+Jörmungandr
+Heimdall
+Hercules
+Athena
+Medusa
+Medea
+Icarus
+Dionysus
+Sisyphus
+Medea
+Echidna
+Tantalus
+Cerberus
+Chiron
+Minotaur
+Echidna
+The Hydra
+Manticore
+Phoenix
+Chimera
+Sphinx
+Scylla
+Charybdis
+Pegasus
+Cupid
+Hades
+Arachne
+Urania
+Demeter
+Dionysus
+Ganesha
+Shiva
+Vishnu
+Homer Simpson
+Lucy Ricardo
+Walter White
+Don Draper
+Tyrion Lannister
+Jon Snow
+Daenerys Targaryen
+Michael Scott
+Dwight Schrute
+Jim Halpert
+Pam Beesly
+Ross Geller
+Rachel Green
+Monica Geller
+Chandler Bing
+Joey Tribbiani
+Sheldon Cooper
+Leonard Hofstadter
+Penny
+Phoebe Buffay
+Frank Underwood
+Claire Underwood
+Rick Grimes
+Daryl Dixon
+Glenn Rhee
+Carol Peletier
+Negan
+Jessica Jones
+Daredevil
+Luke Cage
+Iron Fist
+The Punisher
+Buffy Summers
+Willow Rosenberg
+Spike
+Angel
+Captain Jack Sparrow
+Jim Gordon
+Batman
+Ted Mosby
+Barney Stinson
+Lily Aldrin
+Marshall Eriksen
+Carrie Bradshaw
+Samantha Jones
+Charlotte York
+Miranda Hobbes
+The Fonz
+Steve Urkel
+Carl Winslow
+George Costanza
+Elaine Benes
+Jerry Seinfeld
+Cosmo Kramer
+The Doctor
+Sherlock Holmes
+Joan Holloway
+Peggy Olson
+Al Bundy
+Marge Simpson
+Bart Simpson
+Lisa Simpson
+Meg Griffin
+Peter Griffin
+Stewie Griffin
+Brian Griffin
+Ned Stark
+Cersei Lannister
+Jaime Lannister
+Arya Stark
+Hodor
+Vito Corleone
+Tony Soprano
+Carmela Soprano
+Dr. Gregory House
+Fox Mulder
+Dana Scully
+Tommy Shelby
+Arthur Shelby
+Joan Crawford
+Betty Draper
+Steve Rogers
+Lara Croft
+Frasier Crane
+Kermit the Frog
+Miss Piggy
+Big Bird
+Cookie Monster
+Elmo
+George Orwell
+Buzz Lightyear
+Goku
+Naruto Uzumaki
+Al Pacino
+The Mandalorian
