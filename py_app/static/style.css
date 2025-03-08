@@ -14,6 +14,10 @@ body {
     border-radius: 10px;
 }
 
+#main-logo {
+    width: 70%;
+}
+
 #game-info-div {
     width: 80%;
     margin-top: 10px;
