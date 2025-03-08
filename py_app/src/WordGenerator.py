@@ -45,6 +45,8 @@ sex_generator = FileWordGenerator("data/sex.txt")
 google_generator = FileWordGenerator("data/google_searches.txt")
 concrete_generator = FileWordGenerator("data/concreteness-ranking.txt")
 concrete_generator.words = concrete_generator.words[5000:]
+names_generator = FileWordGenerator("data/names.txt")
+wiki_generator = FileWordGenerator("data/wikipedia.txt")
 
 techno_generator = FileWordGenerator("data/techno.txt")
 legal_generator = FileWordGenerator("data/legal.txt")
@@ -67,6 +69,8 @@ generator_map = {
     "sex": sex_generator,
     "googles": google_generator,
     "concrete": concrete_generator,
+    "names": names_generator,
+    "wikipedia": wiki_generator,
 
     "techno": techno_generator,
     "legal": legal_generator,

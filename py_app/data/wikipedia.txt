@@ -1,0 +1,854 @@
+Hammurabi
+Ramesses II
+Cyrus the Great
+Alexander the Great
+Ashoka
+Qin Shi Huang
+Julius Caesar
+Cleopatra
+Augustus
+Charlemagne
+Genghis Khan
+Mansa Musa
+Timur
+Joan of Arc
+Suleiman the Magnificent
+Akbar
+Elizabeth I
+Catherine the Great
+George Washington
+Napoleon
+Simón Bolívar
+Abraham Lincoln
+Mahatma Gandhi
+Joseph Stalin
+Adolf Hitler
+Mao Zedong
+Nelson Mandela
+Marco Polo
+Zheng He
+Christopher Columbus
+Vasco da Gama
+Ferdinand Magellan
+James Cook
+Roald Amundsen
+Leonardo da Vinci
+Michelangelo
+Rembrandt
+Hokusai
+Vincent van Gogh
+Pablo Picasso
+Confucius
+Laozi
+Herodotus
+Socrates
+Plato
+Aristotle
+Cicero
+Thomas Aquinas
+Ibn Khaldun
+Niccolò Machiavelli
+René Descartes
+John Locke
+Adam Smith
+Immanuel Kant
+Mary Wollstonecraft
+Karl Marx
+Friedrich Nietzsche
+Sigmund Freud
+Homer
+Virgil
+Li Bai
+Murasaki Shikibu
+Rumi
+Dante Alighieri
+Miguel de Cervantes
+William Shakespeare
+Voltaire
+Leo Tolstoy
+Rabindranath Tagore
+Johann Sebastian Bach
+Wolfgang Amadeus Mozart
+Ludwig van Beethoven
+Louis Armstrong
+The Beatles
+Michael Jackson
+Charlie Chaplin
+Walt Disney
+Hippocrates
+Avicenna
+Shen Kuo
+Johannes Gutenberg
+Nicolaus Copernicus
+Galileo Galilei
+Isaac Newton
+Carl Linnaeus
+Antoine Lavoisier
+Michael Faraday
+Charles Darwin
+Florence Nightingale
+Louis Pasteur
+James Clerk Maxwell
+Dmitri Mendeleev
+Thomas Edison
+Nikola Tesla
+Marie Curie
+Albert Einstein
+Archimedes
+Euclid
+Al-Khwarizmi
+Leonhard Euler
+Carl Friedrich Gauss
+Emmy Noether
+Kurt Gödel
+Alan Turing
+The Buddha
+Jesus
+Paul the Apostle
+Muhammad
+Ali
+Adi Shankara
+Martin Luther
+Henry Ford
+History
+Human history 
+Civilization 
+Archaeology
+Aztecs
+Inca Empire
+Islamic Golden Age
+Middle Ages
+Black Death
+Byzantine Empire
+Crusades
+Holy Roman Empire
+Viking Age
+Mongol Empire
+Ottoman Empire
+Tang dynasty
+Bronze Age
+Ancient Egypt
+Indus Valley Civilisation
+Mesopotamia
+Sumer
+Phoenicia
+Iron Age
+Ancient Greece
+Ancient Rome
+Achaemenid Empire
+Gupta Empire
+Han dynasty
+Silk Road
+Pre-Columbian era
+Mesoamerica
+Maya civilization
+Renaissance
+Age of Discovery
+Spanish Empire
+Reformation
+Mughal Empire
+Scientific Revolution
+Age of Enlightenment
+British Empire
+American Revolution
+French Revolution
+Industrial Revolution
+Scramble for Africa
+World War I
+Soviet Union
+Great Depression
+World War II
+Contemporary history
+Decolonization
+Cold War
+Information Age
+Globalization
+Desert
+Sahara
+Forest
+Amazon rainforest
+Grassland
+Island
+Mountain
+Alps
+Andes
+Himalayas
+Rocky Mountains
+Arctic Ocean
+Atlantic Ocean
+Mediterranean Sea
+Indian Ocean
+Pacific Ocean
+Great Barrier Reef
+Southern Ocean
+Lake
+Caspian Sea
+Great Lakes
+Lake Victoria
+River
+Amazon River
+Ganges
+Mississippi River
+Nile
+Yangtze
+Glacier
+Africa
+Algeria
+Democratic Republic of the Congo
+Egypt
+Ethiopia
+Kenya
+Nigeria
+South Africa
+Tanzania
+Asia
+South Asia
+Bangladesh
+India
+Pakistan
+East Asia
+China
+Japan
+South Korea
+Taiwan
+Southeast Asia
+Indonesia
+Malaysia
+Myanmar
+Philippines
+Thailand
+Vietnam
+West Asia
+Iran
+Israel
+Saudi Arabia
+Turkey
+United Arab Emirates
+Europe
+France
+Germany
+Italy
+Netherlands
+Poland
+Russia
+Spain
+Ukraine
+United Kingdom
+North America
+Canada
+Mexico
+United States
+Oceania
+Australia
+South America
+Argentina
+Brazil
+Colombia
+Africa
+Cairo
+Lagos
+Asia
+Beijing
+Hong Kong
+Tokyo
+Jakarta
+Singapore
+India
+Delhi
+Mumbai
+Middle East
+Istanbul
+Jerusalem
+Mecca
+Europe
+London
+Moscow
+Paris
+Rome
+North America
+Mexico City
+New York City
+South America
+São Paulo
+Abstract art
+Modernism
+Realism
+Romanticism
+Great Pyramid of Giza
+Great Wall of China
+Fiction
+Novel
+Short story
+Fairy tale
+Poetry
+Epic poetry
+Classical music
+Folk music
+Jazz
+Pop music
+Rock music
+Dance
+Opera
+Orchestra
+Theatre
+Film
+Animation
+Comics
+Design
+Drawing
+Painting
+Photography
+Pottery
+Sculpture
+Aesthetics
+Epistemology
+Knowledge
+Belief
+Reason
+Truth
+Ethics
+Good and evil
+Logic
+Metaphysics
+Free will
+Ontology
+Religion
+Afterlife
+Deity
+God
+Meditation
+Prayer
+Ritual
+Shamanism
+Soul
+Spirituality
+Secularism
+Atheism
+Abraham
+Christianity
+Bible
+Catholic Church
+Eastern Orthodox Church
+Protestantism
+Islam
+Shia Islam
+Sunni Islam
+Quran
+Judaism
+Talmud
+Moses
+Chinese folk religion
+Shinto
+Taoism
+Buddhism
+Mahayana
+Theravada
+Hinduism
+Vedas
+Bhagavad Gita
+Jainism
+Sikhism
+Marriage
+Parenting
+Adult
+Adolescence
+Child
+Infant
+Old age
+Friendship
+Sexual intercourse
+Sexual orientation
+Gender
+Man
+Woman
+Bread
+Cereal
+Wheat
+Maize
+Rice
+Cheese
+Fruit
+Meat
+Salt
+Spice
+Sugar
+Vegetable
+Potato
+Soybean
+Drink
+Alcoholic beverage
+Coffee
+Drinking water
+Milk
+Tea
+Game
+Board game
+Card game
+Gambling
+Video game
+Sport
+Association football
+Olympic Games
+Toy
+Martial arts
+Swimming
+Tourism
+Culture
+Folklore
+Festival
+Oral tradition
+Popular culture
+Society
+Community
+Power
+Social class
+Communication
+Information
+Social science
+Anthropology
+Sociology
+Politics
+Political party
+Political science
+Colonialism
+Imperialism
+Government
+Democracy
+Dictatorship
+Monarchy
+Ideology
+Anarchism
+Capitalism
+Communism
+Conservatism
+Fascism
+Liberalism
+Nationalism
+Socialism
+State
+Diplomacy
+Military
+War
+Genocide
+Peace
+Terrorism
+Education
+School
+Library
+University
+Business
+Corporation
+Management
+Marketing
+Retail
+Trade union
+Economics
+Trade
+Supply and demand
+Employment
+Work
+Finance
+Bank
+Money
+Insurance
+Service
+Tax
+Economy
+Agriculture
+Manufacturing
+Construction
+Fishing
+Hunting
+Mining
+Disability
+Discrimination
+Racism
+Sexism
+Environmentalism
+Pollution
+Famine
+Feminism
+Human migration
+Human rights
+Liberty
+Privacy
+Slavery
+Social equality
+Suffrage
+Indigenous peoples
+Poverty
+Violence
+Welfare spending
+Crime
+Constitution
+Justice
+Police
+Property
+Anger
+Fear
+Happiness
+Humour
+Love
+Mind
+Consciousness
+Dream
+Memory
+Thought
+Human behavior
+Intelligence
+Learning
+Personality
+Broadcasting
+News
+Publishing
+Allergy
+Asthma
+Cancer
+Cardiovascular disease
+Stroke
+Diabetes
+Gastroenteritis
+Infection
+Common cold
+Influenza
+Malaria
+Pneumonia
+Sexually transmitted infection
+HIV
+AIDS
+Smallpox
+Tuberculosis
+Mental disorder
+Injury
+Dentistry
+Hospital
+Nursing
+Surgery
+Abortion
+Ageing
+Exercise
+Health
+Mental health
+Hygiene
+Sanitation
+Nutrition
+Obesity
+Drug
+Medication
+Anesthesia
+Antibiotic
+Birth control
+Vaccine
+Addiction
+Alcoholism
+Smoking
+Astronomy
+Universe
+Solar System
+Sun
+Mercury
+Venus
+Earth
+Moon
+Mars
+Jupiter
+Saturn
+Uranus
+Neptune
+Asteroid
+Big Bang
+Black hole
+Comet
+Galaxy
+Milky Way
+Natural satellite
+Orbit
+Outer space
+Planet
+Star
+Supernova
+Day
+Year
+Classical mechanics
+Mass
+Momentum
+Motion
+Newton's laws of motion
+Electricity
+Force
+Electromagnetism
+Gravity
+Strong interaction
+Weak interaction
+Magnetism
+Matter
+State of matter
+Atom
+Particle physics
+Subatomic particle
+Electron
+Neutron
+Photon
+Proton
+Quantum mechanics
+Radioactive decay
+Space
+Vacuum
+Thermodynamics
+Heat
+Temperature
+Theory of relativity
+Speed of light
+Wave
+Electromagnetic radiation
+Light
+Color
+Optics
+Sound
+Biology
+Molecular biology
+Life
+Cell
+Death
+Suicide
+Abiogenesis
+Ecology
+Biodiversity
+Ecosystem
+Extinction
+Evolution
+Human evolution
+Natural selection
+Organism
+Archaea
+Bacteria
+Eukaryote
+Animal
+Zoology
+Amphibian
+Arthropod
+Crustacean
+Insect
+Bird
+Chicken
+Fish
+Mammal
+Cat
+Cattle
+Dog
+Horse
+Pig
+Primate
+Human
+Rodent
+Sheep
+Mollusca
+Reptile
+Dinosaur
+Plant
+Algae
+Botany
+Flower
+Seed
+Tree
+Fungus
+Virus
+Anatomy
+Human body
+Circulatory system
+Blood
+Heart
+Lung
+Immune system
+Liver
+Nervous system
+Brain
+Ear
+Eye
+Sense
+Skeletal muscle
+Skeleton
+Bone
+Skin
+Physiology
+Digestion
+Metabolism
+Photosynthesis
+Reproduction
+Egg
+Sex
+Pregnancy
+Sleep
+Genetics
+Gene
+Heredity
+Paleontology
+Taxonomy
+Species
+Chemistry
+Biochemistry
+Carbohydrate
+DNA
+Hormone
+Lipid
+Protein
+RNA
+Inorganic chemistry
+Organic chemistry
+Physical chemistry
+Chemical element
+Periodic table
+Aluminium
+Carbon
+Copper
+Gold
+Hydrogen
+Iron
+Nitrogen
+Oxygen
+Phosphorus
+Silicon
+Silver
+Sulfur
+Chemical compound
+Water
+Carbon dioxide
+Chemical bond
+Molecule
+Chemical reaction
+Acid–base reaction
+Catalysis
+Redox
+Fire
+Metal
+Alloy
+Bronze
+Steel
+Earth science
+History of Earth
+Atmosphere of Earth
+Internal structure of Earth
+Season
+Flood
+Climate
+Climate change
+Weather
+Cloud
+Rain
+Snow
+Tornado
+Tropical cyclone
+Wind
+Geology
+Earthquake
+Erosion
+Mineral
+Plate tectonics
+Rock
+Soil
+Volcano
+Electric battery
+Explosive
+Gunpowder
+Fossil fuel
+Coal
+Natural gas
+Petroleum
+Nuclear power
+Renewable energy
+Hydropower
+Solar energy
+Wind power
+Animal husbandry
+Domestication
+Biotechnology
+Genetic engineering
+Fertilizer
+Food preservation
+Garden
+Medical imaging
+Oven
+Refrigeration
+Weapon
+Armour
+Bomb
+Firearm
+Knife
+Engine
+Electric motor
+Internal combustion engine
+Steam engine
+Mail
+Telecommunications
+Internet
+Radio
+Telephone
+Mobile phone
+Television
+Artificial intelligence
+Cryptography
+Electronics
+Electric light
+Integrated circuit
+Semiconductor device
+Rocket
+Satellite
+Space exploration
+Spaceflight
+Space station
+Aircraft
+Bicycle
+Bridge
+Canal
+Car
+Road
+Ship
+Train
+Navigation
+Compass
+Map
+Radar
+Calendar
+Clock
+Fortification
+Infrastructure
+Building
+Dam
+Concrete
+Glass
+Masonry
+Metallurgy
+Rubber
+Paper
+Plastic
+Textile
+Cotton
+Wood
+Camera
+Laser
+Lens
+Microscope
+Telescope
+Fraction
+Integer
+Natural number
+Prime number
+Complex number
+Number theory
+Algebra
+Equation
+Variable
+Linear algebra
+Exponentiation
+Logarithm
+Arithmetic 
+Angle
+Trigonometry
+Area
+Circle
+Line
+Polygon
+Triangle
+Volume
+Topology
+
