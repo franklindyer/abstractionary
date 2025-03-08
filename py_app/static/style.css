@@ -52,6 +52,14 @@ body {
     margin: 10px;
 }
 
+.target-word-b {
+    margin: 5px;
+    padding: 5px;
+    display: inline-block;
+    border-radius: 3px;
+    background-color: #ffeeee;
+}
+
 #player-input {
     float: left;
 }

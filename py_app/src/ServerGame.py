@@ -50,7 +50,8 @@ class ServerGame:
         self.chat = []
         self.chat_history = []
         self.last_history = "/not/a/path"
-        self.generate_word()
+        self.num_target_choices = 3
+        self.generate_words()
         self.last_cleaned = datetime.now()
         self.lock = Lock()
         self.words_used_in_round = 0
@@ -59,7 +60,7 @@ class ServerGame:
         return self.player_list[self.active_player_index]
 
     def get_teaser(self):
-        return f"Guess the phrase '{self.tf.filter(self.target_word)}'"
+        return f"Guess the phrase '{self.tf.filter(self.target_words[0])}'"
 
     def add_player(self):
         new_player = ClientPlayer()
@@ -69,7 +70,7 @@ class ServerGame:
 
     def next_player(self):
         self.active_player_index = (self.active_player_index+1) % len(self.player_list)
-        self.generate_word()
+        self.generate_words()
         self.words_used_in_round = 0
 
     def delete_player(self, player_id):
@@ -97,8 +98,8 @@ class ServerGame:
         self.chat = self.chat[:CHAT_LIMIT] 
         self.chat_history = self.chat_history + [(msg_type, sender_name, msg)]
 
-    def save_history(self):
-        filename = f"./history/{self.target_word}-{self.id}-{datetime.now().strftime('%Y-%m-%d-%H-%M-%S')}.txt"
+    def save_history(self, winning_word):
+        filename = f"./history/{winning_word}-{self.id}-{datetime.now().strftime('%Y-%m-%d-%H-%M-%S')}.txt"
         self.last_history = filename
         with open(filename, 'w+') as f:
             for cmsg in self.chat_history:
@@ -122,15 +123,15 @@ class ServerGame:
             return "There is no history for your game."
         return open(self.last_history, 'r').read()
 
-    def generate_word(self):
-        self.target_word = self.wg.gen_word()
-        self.tf.set_target_phrase(self.target_word) 
+    def generate_words(self):
+        self.target_words = [self.wg.gen_word() for i in range(self.num_target_choices)]
+        self.tf.set_target_phrases(self.target_words) 
         self.tf.wt.reset()
 
     def guess_word(self, player_id, guess_word):
         if (player_id != self.active_player()) and \
             (player_id in self.players.keys()) and \
-            (guess_word == self.target_word):
+            (guess_word in self.target_words):
             return True
         return False
    
@@ -158,7 +159,7 @@ class ServerGame:
             "describer": self.players[self.active_player()].name,
         }
         if player_id == self.active_player():
-            game_state["target_word"] = self.target_word
+            game_state["target_words"] = self.target_words
         return game_state
 
     def receive_chat(self, id, chat_msg):
@@ -166,14 +167,14 @@ class ServerGame:
             chat_msg = chat_msg[:DESC_LENGTH_LIMIT]
             self.words_used_in_round = self.words_used_in_round + len(chat_msg.split(' '))
             self.add_chat("HINT", self.players[id].name, self.tf.filter(chat_msg))
-        elif chat_msg.lower() == self.target_word:
+        elif chat_msg.lower() in self.target_words:
             chat_msg = chat_msg[:CHAT_LENGTH_LIMIT]
             score = max(0, 200-self.words_used_in_round)
             self.players[id].points += score // 2
             self.players[self.active_player()].points += score
-            win_msg = f"Player {self.players[id].name} has guessed the word: {self.target_word}!"
+            win_msg = f"Player {self.players[id].name} has guessed the word: {chat_msg.lower()}!"
             self.add_chat("WIN", "", win_msg)
-            self.save_history()
+            self.save_history(chat_msg.lower())
             self.next_player()
             # print(f"Player {id} has guessed the word.")
         else:

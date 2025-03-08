@@ -52,8 +52,8 @@ class TextFilter:
         if self.rank_bound == None:
             self.rank_bound = difficulty_map["default"]
 
-    def set_target_phrase(self, target_phrase):
-        self.blacklist = [wd.strip() for wd in target_phrase.split(' ')]
+    def set_target_phrases(self, target_phrases):
+        self.blacklist = [wd.strip() for target_phrase in target_phrases for wd in target_phrase.split(' ')]
 
     def filter(self, txt):
         return self.reassemble_text(self.translate_text(self.tokenize_text(txt)))

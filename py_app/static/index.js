@@ -129,7 +129,7 @@ function ChatHistory({ enabled, chatList }) {
     );
 }
 
-function LevelHeader({ isIlliterate, targetWord, describer }) {
+function LevelHeader({ isIlliterate, targetWords, describer }) {
     if (!isIlliterate)
         return (
             <div id="player-help">
@@ -139,7 +139,7 @@ function LevelHeader({ isIlliterate, targetWord, describer }) {
     else
         return (
             <div id="player-help">
-                It's your turn to be The Illiterate! Make the other player guess the phrase: <b>{targetWord}</b> 
+                It's your turn to be The Illiterate! Make the other player guess one of these phrases: {targetWords.map((tw) => <b class="target-word-b">{tw}</b>)}
             </div>
         )
 }
@@ -158,7 +158,7 @@ function App() {
     const [playerList, setPlayerList] = React.useState([]);
     const [chatMessages, setChatMessages] = React.useState([]);
     const [isCurrentPlayer, setIsCurrentPlayer] = React.useState(false);
-    const [targetWord, setTargetWord] = React.useState("");
+    const [targetWords, setTargetWords] = React.useState([]);
     const [describer, setDescriber] = React.useState("");
 
     const [gameData, setGameData] = React.useState({});
@@ -179,11 +179,11 @@ function App() {
         setPlayerList(data_dict["players"]);
         setChatMessages(data_dict["chat"]);
         setDescriber(data_dict["describer"]);
-        if ("target_word" in data_dict) {
-            setTargetWord(data_dict["target_word"]);
+        if ("target_words" in data_dict) {
+            setTargetWords(data_dict["target_words"]);
             setIsCurrentPlayer(true);
         } else {
-            setTargetWord("");
+            setTargetWords([]);
             setIsCurrentPlayer(false);
         }
     }
@@ -200,7 +200,7 @@ function App() {
 
     return (
         <div>
-            <LevelHeader isIlliterate={isCurrentPlayer} targetWord={targetWord} describer={describer} />
+            <LevelHeader isIlliterate={isCurrentPlayer} targetWords={targetWords} describer={describer} />
             <HintInput enabled={isCurrentPlayer} onChange={setHintInString} />
             <HintOutput outputHint={hintOutString} />
             <div id="chat-section-container">
