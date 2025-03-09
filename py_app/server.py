@@ -104,6 +104,10 @@ def serve_index():
     public_games = sm.get_public_games()
     return render_template("index.html", active_games=len(public_games), public_games=public_games)
 
+@app.route('/robots.txt')
+def serve_robots():
+    return send_from_directory('static', 'robots.txt')
+
 @app.route('/static/<path:path>')
 def serve_file(path):
     return send_from_directory('static', path)
