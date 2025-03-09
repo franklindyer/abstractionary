@@ -19,6 +19,8 @@ class FakeWordTranslator:
         self.fakelist = [ln.strip() for ln in open(wordlist, 'r').readlines()]
 
     def translate(self, word):
+        if len(word) == 0:
+            return ""
         if not word in self.wordmap.keys():
             self.wordmap[word] = random.choice(self.fakelist)
         return self.wordmap[word]

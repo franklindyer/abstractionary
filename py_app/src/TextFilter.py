@@ -25,7 +25,7 @@ class TextToken:
             if c.isalnum():
                 break
             pre = pre + c
-        for i, c in enumerate(s[::-1]):
+        for i, c in enumerate(s[len(pre):][::-1]):
             if c.isalnum():
                 break
             post = c + post

@@ -15,7 +15,7 @@ from WordRanker import *
 from WordGenerator import *
 
 wr = WordRanker()
-wr.ingest_data("data/concreteness-ranking.txt")
+wr.ingest_data("data/american-english.txt")
 
 MAX_GAMES = 50
 MAX_PLAYERS_PER_GAME = 6
