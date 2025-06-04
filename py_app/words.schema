@@ -1,0 +1,17 @@
+CREATE TABLE freqs (
+    id INTEGER PRIMARY KEY,
+    lemma TEXT NOT NULL,
+    rank INTEGER NOT NULL
+);
+
+CREATE TABLE lists (
+    id INTEGER PRIMARY KEY,
+    name TEXT NOT NULL,
+    title TEXT NOT NULL
+);
+
+CREATE TABLE prompts (
+    id INTEGER PRIMARY KEY,
+    prompt TEXT NOT NULL,
+    list TEXT NOT NULL
+);

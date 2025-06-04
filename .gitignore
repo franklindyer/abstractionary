@@ -3,3 +3,5 @@
 **/history
 **/.DS_Store
 **/venv
+**/.*
+**/*.db

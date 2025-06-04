@@ -1,6 +1,6 @@
 FROM ubuntu:latest
 
-RUN apt-get update -y && apt-get install -y python3 pip python3.12-venv
+RUN apt-get update -y && apt-get install -y python3 pip python3-venv
 RUN python3 -m venv venv
 RUN /venv/bin/pip install flask flask_socketio nltk
 

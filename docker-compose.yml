@@ -7,4 +7,4 @@ services:
             - ./py_app/web:/app/web
             - ./py_app/static:/app/static
         ports:
-            - 5001:5001
+            - 0.0.0.0:5001:5001

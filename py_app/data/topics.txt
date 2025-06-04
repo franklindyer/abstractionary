@@ -1,0 +1,15 @@
+foods	Kinds of foods
+household	Household objects
+locations	Kinds of places
+countries	Countries
+names	Names, real and fictional
+art	Art terms and concepts
+biology	Biology terms and concepts
+engineer	Engineering terms and concepts
+money	Financial terms and concepts
+legal	Law & Crime terms and concepts
+techno	Computer terms and concepts
+adulting	Things you have to deal with as an adult
+ideas	Abstract ideas
+wikipedia	Wikipedia core topics
+sex	Sex-related words

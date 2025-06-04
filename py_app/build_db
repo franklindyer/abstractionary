@@ -1,0 +1,4 @@
+rm -fv ./data/words.db
+sqlite3 ./data/words.db < words.schema
+
+python3 ./src/build_db.py
