@@ -1,5 +1,7 @@
 import random
 
+from db_tools import *
+
 class TrivialTranslator:
     def __init__(self):
         return
@@ -11,18 +13,16 @@ class TrivialTranslator:
         return
 
 class FakeWordTranslator:
-    def __init__(self):
-        self.fakelist = ["squanch"]
+    def __init__(self, con):
         self.wordmap = {}
-
-    def ingest_data(self, wordlist):
-        self.fakelist = [ln.strip() for ln in open(wordlist, 'r').readlines()]
+        self.con = con
 
     def translate(self, word):
         if len(word) == 0:
             return ""
         if not word in self.wordmap.keys():
-            self.wordmap[word] = random.choice(self.fakelist)
+            rand_trans = db_random_nonsense(self.con)
+            self.wordmap[word] = rand_trans
         return self.wordmap[word]
 
     def reset(self):

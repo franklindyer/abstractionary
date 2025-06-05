@@ -1,5 +1,6 @@
 import random
 
+from db_tools import *
 from WordRanker import *
 
 class FreqWordGenerator:
@@ -26,64 +27,56 @@ class FileWordGenerator:
     def gen_word(self):
         return random.choice(self.words)
 
-uncommon_generator = FreqWordGenerator(googleWordRanker)
-uncommon_generator.lower_rank = 5000
-uncommon_generator.upper_rank = 9999
+class DBWordGenerator:
+    def __init__(self, cur, topic):
+        self.cur = cur
+        self.topic = topic
 
-common_generator = FreqWordGenerator(googleWordRanker)
-common_generator.lower_rank = 0
-common_generator.upper_rank = 999
+    def gen_word(self):
+        choice = db_random_prompts(self.cur, [self.topic], choices=1)[0]
+        return choice
 
-abstract_generator = FileWordGenerator("data/ideas.txt")
-celeb_generator = FileWordGenerator("data/celebrities.txt")
-country_generator = FileWordGenerator("data/countries.txt")
-food_generator = FileWordGenerator("data/foods.txt")
-household_generator = FileWordGenerator("data/household.txt")
-location_generator = FileWordGenerator("data/locations.txt")
-adjective_generator = FileWordGenerator("data/adjectives.txt")
-sex_generator = FileWordGenerator("data/sex.txt")
-google_generator = FileWordGenerator("data/google_searches.txt")
-concrete_generator = FileWordGenerator("data/concreteness-ranking.txt")
-concrete_generator.words = concrete_generator.words[5000:]
-names_generator = FileWordGenerator("data/names.txt")
-wiki_generator = FileWordGenerator("data/wikipedia.txt")
+# uncommon_generator = FreqWordGenerator(googleWordRanker)
+# uncommon_generator.lower_rank = 5000
+# uncommon_generator.upper_rank = 9999
 
-techno_generator = FileWordGenerator("data/techno.txt")
-legal_generator = FileWordGenerator("data/legal.txt")
-bio_generator = FileWordGenerator("data/biology.txt")
-art_generator = FileWordGenerator("data/art.txt")
-money_generator = FileWordGenerator("data/money.txt")
-engineer_generator = FileWordGenerator("data/engineer.txt")
-adult_generator = FileWordGenerator("data/adulting.txt")
+# common_generator = FreqWordGenerator(googleWordRanker)
+# common_generator.lower_rank = 0
+# common_generator.upper_rank = 999
 
-generator_map = {
-    "uncommon": uncommon_generator,
-    "common": common_generator,
-    "abstract": abstract_generator,
-    "countries": country_generator,
-    "celebrities": celeb_generator,
-    "foods": food_generator,
-    "household": household_generator,
-    "locations": location_generator,
-    "adjectives": adjective_generator,
-    "sex": sex_generator,
-    "googles": google_generator,
-    "concrete": concrete_generator,
-    "names": names_generator,
-    "wikipedia": wiki_generator,
+# abstract_generator = FileWordGenerator("data/ideas.txt")
+# celeb_generator = FileWordGenerator("data/celebrities.txt")
+# country_generator = FileWordGenerator("data/countries.txt")
+# food_generator = FileWordGenerator("data/foods.txt")
+# household_generator = FileWordGenerator("data/household.txt")
+# location_generator = FileWordGenerator("data/locations.txt")
+# adjective_generator = FileWordGenerator("data/adjectives.txt")
+# sex_generator = FileWordGenerator("data/sex.txt")
+# google_generator = FileWordGenerator("data/google_searches.txt")
+# concrete_generator = FileWordGenerator("data/concreteness-ranking.txt")
+# concrete_generator.words = concrete_generator.words[5000:]
+# names_generator = FileWordGenerator("data/names.txt")
+# wiki_generator = FileWordGenerator("data/wikipedia.txt")
 
-    "techno": techno_generator,
-    "legal": legal_generator,
-    "biology": bio_generator,
-    "art": art_generator,
-    "money": money_generator,
-    "engineer": engineer_generator,
-    "adulting": adult_generator,
-}
+# techno_generator = FileWordGenerator("data/techno.txt")
+# legal_generator = FileWordGenerator("data/legal.txt")
+# bio_generator = FileWordGenerator("data/biology.txt")
+# art_generator = FileWordGenerator("data/art.txt")
+# money_generator = FileWordGenerator("data/money.txt")
+# engineer_generator = FileWordGenerator("data/engineer.txt")
+# adult_generator = FileWordGenerator("data/adulting.txt")
+
+
+def make_generator_map(con):
+    topic_list = db_topic_list(con)
+    generator_map = {}
+    for t in topic_list:
+        generator_map[t] = DBWordGenerator(con, t)
+    return generator_map
 
 class CombinedWordGenerator:
     def __init__(self, grouplist):
-        self.gens = [generator_map[k] for k in grouplist]
+        self.gens = [grouplist[k] for k in grouplist]
 
     def gen_word(self):
         return random.choice(self.gens).gen_word()

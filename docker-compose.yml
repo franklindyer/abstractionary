@@ -6,5 +6,6 @@ services:
             - ./history:/app/history
             - ./py_app/web:/app/web
             - ./py_app/static:/app/static
+            - ./py_app/data:/app/data
         ports:
             - 0.0.0.0:5001:5001

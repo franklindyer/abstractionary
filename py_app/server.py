@@ -2,6 +2,7 @@ from flask import Flask, make_response, redirect, render_template, request, send
 from werkzeug.exceptions import HTTPException
 from flask_socketio import emit, SocketIO
 import json
+import sqlite3
 from threading import Lock
 
 import sys
@@ -14,8 +15,11 @@ from WordTranslator import *
 from WordRanker import *
 from WordGenerator import *
 
-wr = WordRanker()
-wr.ingest_data("data/american-english.txt")
+con = sqlite3.connect("./data/words.db", check_same_thread=False) 
+cur = con.cursor()
+
+generator_map = make_generator_map(con)
+wr = WordRanker(con)
 
 MAX_GAMES = 50
 MAX_PLAYERS_PER_GAME = 6
@@ -28,12 +32,11 @@ class AbsServiceManager:
         self.public_games = []
 
     def build_game(self, category_list, difficulty):
-        wt = FakeWordTranslator()
-        wt.ingest_data("data/refined_non_english_words.txt")
+        wt = FakeWordTranslator(con)
         # text_filter = TextFilter(wr, wt)
         # text_filter.set_difficulty(difficulty)
         text_filter = make_filter_of_type(difficulty, wr, wt)
-        word_generator = CombinedWordGenerator(category_list)
+        word_generator = CombinedWordGenerator(generator_map)
         return ServerGame(text_filter, word_generator)
 
     def add_game(self, category_list, difficulty, public=False):

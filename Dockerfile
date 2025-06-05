@@ -13,7 +13,6 @@ RUN mkdir /app/static
 
 COPY py_app/server.py /app
 COPY py_app/src/*.py /app
-COPY py_app/data/*.txt /app/data
 
 EXPOSE 5001
 
