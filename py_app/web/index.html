@@ -36,6 +36,12 @@
         <details class="game-options-dropdown">
         <summary>Customize your wordlist</summary>
         <ul>
+        {% for l in lists %}
+            <li>
+                <input type="checkbox" id="{{ l[0] }}-cb" name="{{ l[0] }}" checked/> {{ l[1] }}
+            </li>
+        {% endfor %}
+        <!-- 
             <li><input type="checkbox" id="uncommon-cb" name="uncommon" checked/> Uncommon English words</li>
             <li><input type="checkbox" id="common-cb" name="common"/> Common English words</li>
             <li><input type="checkbox" id="concrete-cb" name="concrete"/> Concrete English words</li>
@@ -57,6 +63,7 @@
             <li><input type="checkbox" id="money-cb" name="money"/> Finance and economics words</li>
             <li><input type="checkbox" id="engineer-cb" name="engineer"/> Physics and engineering words</li>
             <li><input type="checkbox" id="adulting-cb" name="adulting"/> "Adulting" words</li>
+        -->
         </ul>
         </details>
         
@@ -83,10 +90,6 @@
                 <input type="radio" id="difficulty-choice-impossible" name="difficulty" value="impossible" />
                 <label for="difficulty-choice-impossible">Category theorist (100 most common words)</label>
             </li> 
-            <li>
-                <input type="radio" id="difficulty-choice-caveman" name="difficulty" value="caveman" />
-                <label for="difficulty-choice-caveman">Caveman (monosyllabic words only)</label>
-            </li>
         </ul>
         </details>
 

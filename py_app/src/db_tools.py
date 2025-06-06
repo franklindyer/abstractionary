@@ -41,3 +41,7 @@ def db_random_prompts(con, topics, choices=3):
 def db_topic_list(con):
     sel_topics = pool_query(con, "SELECT name FROM lists WHERE NOT name='nonsense'")
     return [r[0] for r in sel_topics]
+
+def db_topic_titles(con):
+    sel_topics = pool_query(con, "SELECT name, title FROM lists WHERE NOT name='nonsense'")
+    return list(sel_topics) 

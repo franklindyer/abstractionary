@@ -19,6 +19,7 @@ con = sqlite3.connect("./data/words.db", check_same_thread=False)
 cur = con.cursor()
 
 generator_map = make_generator_map(con)
+list_titles = db_topic_titles(con)
 wr = WordRanker(con)
 
 MAX_GAMES = 50
@@ -33,8 +34,6 @@ class AbsServiceManager:
 
     def build_game(self, category_list, difficulty):
         wt = FakeWordTranslator(con)
-        # text_filter = TextFilter(wr, wt)
-        # text_filter.set_difficulty(difficulty)
         text_filter = make_filter_of_type(difficulty, wr, wt)
         word_generator = CombinedWordGenerator(generator_map)
         return ServerGame(text_filter, word_generator)
@@ -105,7 +104,7 @@ socketio = SocketIO(app)
 @app.route('/')
 def serve_index():
     public_games = sm.get_public_games()
-    return render_template("index.html", active_games=len(public_games), public_games=public_games)
+    return render_template("index.html", active_games=len(public_games), public_games=public_games, lists=list_titles)
 
 @app.route('/robots.txt')
 def serve_robots():

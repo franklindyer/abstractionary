@@ -78,8 +78,6 @@ class TextFilter:
     def reassemble_text(self, tokens):
         return ''.join([tt.combine() for tt in tokens])
 
-# ONE_SYLLABLE_SET = set([ln.strip() for ln in open("data/one-syllable.txt").readlines()])
-
 class MonosyllabicFilter:
     def __init__(self, word_ranker, word_translator):
         self.blacklist = []
