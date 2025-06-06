@@ -2,7 +2,7 @@ FROM ubuntu:latest
 
 RUN apt-get update -y && apt-get install -y python3 pip python3-venv
 RUN python3 -m venv venv
-RUN /venv/bin/pip install flask flask_socketio 
+RUN python3 -m pip install flask flask_socketio waitress 
 
 RUN mkdir /app
 RUN mkdir /app/history
@@ -18,4 +18,5 @@ EXPOSE 5001
 
 WORKDIR /app
 
-ENTRYPOINT ["/venv/bin/python3", "server.py"]
+# ENTRYPOINT ["/venv/bin/python3", "server.py"]
+ENTRYPOINT ["waitress-serve", "--host", "0.0.0.0", "--call", "server:app"]
