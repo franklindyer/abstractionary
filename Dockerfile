@@ -1,8 +1,9 @@
 FROM ubuntu:latest
 
 RUN apt-get update -y && apt-get install -y python3 pip python3-venv
-RUN python3 -m venv venv
-RUN python3 -m pip install flask flask_socketio waitress 
+RUN python3 -m venv /venv
+RUN /venv/bin/python3 -m pip install flask flask_socketio waitress 
+ENV PATH="/venv/bin:$PATH"
 
 RUN mkdir /app
 RUN mkdir /app/history
