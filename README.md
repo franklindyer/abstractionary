@@ -31,4 +31,6 @@ If you want to use your own custom target word lists, that's pretty easy too! Ju
 
 Code written solely by myself (Franklin Pezzuti Dyer). Thanks to Althea Denlinger, Alex Adams and Ada Pezzuti Dyer for helping me test the game.
 
+The lovely logo was drawn by Ada Pezzuti Dyer.
+
 Player avatars taken from EmojiMix.
