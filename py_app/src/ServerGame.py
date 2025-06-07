@@ -51,6 +51,8 @@ class ServerGame:
         self.chat_history = []
         self.last_history = "/not/a/path"
         self.num_target_choices = 3
+        self.recent_targets = []
+        self.recent_targets_length = 50
         self.generate_words()
         self.last_cleaned = datetime.now()
         self.lock = Lock()
@@ -125,6 +127,10 @@ class ServerGame:
 
     def generate_words(self):
         self.target_words = [self.wg.gen_word() for i in range(self.num_target_choices)]
+        # Make sure recently repeated words are avoided
+        for i in range(len(self.target_words)):
+            while self.target_words[i] in self.recent_targets:
+                self.target_words[i] = self.wg.gen_word()
         self.tf.set_target_phrases(self.target_words) 
         self.tf.wt.reset()
 
@@ -172,6 +178,7 @@ class ServerGame:
             score = max(0, 200-self.words_used_in_round)
             self.players[id].points += score // 2
             self.players[self.active_player()].points += score
+            self.recent_targets = ([chat_msg.lower()] + self.recent_targets)[:self.recent_targets_length]
             win_msg = f"Player {self.players[id].name} has guessed the word: {chat_msg.lower()}!"
             self.add_chat("WIN", "", win_msg)
             self.save_history(chat_msg.lower())
