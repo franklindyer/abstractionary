@@ -153,7 +153,12 @@ class ServerGame:
         if player.name == "Anon" and state["player_name"] != "":
             player.name = state["player_name"][:NAME_LENGTH_LIMIT]
         if player_id == self.active_player():
-            self.update_desc(player_id, state["desc_field"][:DESC_LENGTH_LIMIT])
+            if len(self.target_words) > 1 and state["target_word"] in self.target_words:
+                # Active player has chosen a target word
+                self.target_words = [state["target_word"]]
+            if len(self.target_words) == 1:
+                # Only send the active player's hint if they have chosen a word 
+                self.update_desc(player_id, state["desc_field"][:DESC_LENGTH_LIMIT])
  
     def get_game_state(self, player_id):
         game_state = {

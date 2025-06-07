@@ -60,6 +60,12 @@ body {
     background-color: #ffeeee;
 }
 
+.target-word-choice:hover {
+    padding-left: 8px;
+    padding-right: 8px;
+    background-color: #ddaaaa;
+}
+
 #player-input {
     float: left;
 }
