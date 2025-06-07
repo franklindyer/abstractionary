@@ -1,5 +1,0 @@
-services:
-    - type: web
-      runtime: docker
-      name: abstractionary
-      dockerfilePath: Dockerfile.render
