@@ -9,10 +9,10 @@ RUN mkdir /app
 RUN mkdir /app/history
 RUN mkdir /app/src
 COPY py_app/server.py /app
-COPY ./py_app/web /app/web
-COPY ./py_app/static /app/static
-COPY ./py_app/data /app/data
-COPY py_app/src /app/src
+COPY ./py_app/web/ /app/web
+COPY ./py_app/static/ /app/static
+COPY ./py_app/data/ /app/data
+COPY ./py_app/src/ /app/src
 
 EXPOSE 5001
 
