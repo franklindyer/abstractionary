@@ -11,17 +11,6 @@ if (get_cookie("name") === "") {
 
 var socket = io(); 
 
-function state_update_loop(sock) {
-    var state = {
-        "player_id": get_cookie("player_id"),
-        "player_name": get_cookie("name"),
-        "desc_field": document.getElementById("player-input").value,
-    };
-    var state_string = JSON.stringify(state);
-    sock.emit('gamemsg', { data: state_string });
-    setTimeout(() => { state_update_loop(sock); }, 500);
-};
-
 function HintInput({enabled, onChange}) {
     const handleChange = (event) => {
         onChange(event.target.value);
@@ -129,17 +118,36 @@ function ChatHistory({ enabled, chatList }) {
     );
 }
 
-function LevelHeader({ isIlliterate, targetWords, describer }) {
+function TargetWordChoice({ targetWord, chooseTargetWord }) {
+    var chooseTarget = (e) => {
+        chooseTargetWord(targetWord);
+    };
+    return (
+        <b class="target-word-b target-word-choice" value="{ targetWord }" onClick={ chooseTarget }>
+            { targetWord }
+        </b>
+    )
+}
+
+function LevelHeader({ isIlliterate, targetWords, targetWord, describer, chooseTargetWord }) {
     if (!isIlliterate)
         return (
             <div id="player-help">
                 {describer} is The Illiterate. Try and guess the word they are describing.
             </div>
         )
+    else if (targetWord.length > 0)
+        return (
+            <div id="player-help">
+                You are The Illiterate. Make the other player guess the phrase: <b class="target-word-b">{targetWord}</b>
+            </div>
+        )
     else
         return (
             <div id="player-help">
-                It's your turn to be The Illiterate! Make the other player guess one of these phrases: {targetWords.map((tw) => <b class="target-word-b">{tw}</b>)}
+                It's your turn to be The Illiterate! Pick one of these phrases: {targetWords.map((tw) => {
+                    return <TargetWordChoice targetWord={tw} chooseTargetWord={chooseTargetWord} />;
+                })}
             </div>
         )
 }
@@ -159,6 +167,7 @@ function App() {
     const [chatMessages, setChatMessages] = React.useState([]);
     const [isCurrentPlayer, setIsCurrentPlayer] = React.useState(false);
     const [targetWords, setTargetWords] = React.useState([]);
+    const [targetWord, setTargetWord] = React.useState("");
     const [describer, setDescriber] = React.useState("");
 
     const [gameData, setGameData] = React.useState({});
@@ -168,6 +177,7 @@ function App() {
             "player_id": get_cookie("player_id"),
             "player_name": get_cookie("name"),
             "desc_field": hintInString,
+            "target_word": targetWord
         }
         var state_string = JSON.stringify(state);
         socket.emit('gamemsg', { data: state_string });
@@ -184,6 +194,7 @@ function App() {
             setIsCurrentPlayer(true);
         } else {
             setTargetWords([]);
+            setTargetWord("");
             setIsCurrentPlayer(false);
         }
     }
@@ -200,8 +211,8 @@ function App() {
 
     return (
         <div>
-            <LevelHeader isIlliterate={isCurrentPlayer} targetWords={targetWords} describer={describer} />
-            <HintInput enabled={isCurrentPlayer} onChange={setHintInString} />
+            <LevelHeader isIlliterate={isCurrentPlayer} targetWords={targetWords} targetWord={targetWord} describer={describer} chooseTargetWord={setTargetWord} />
+            <HintInput enabled={isCurrentPlayer && targetWord.length > 0} onChange={setHintInString} />
             <HintOutput outputHint={hintOutString} />
             <div id="chat-section-container">
                 <PlayerScoreboard playerList={playerList} />
