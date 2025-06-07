@@ -10,6 +10,7 @@ money	Financial terms and concepts
 legal	Law & Crime terms and concepts
 techno	Computer terms and concepts
 adulting	Things you have to deal with as an adult
+travel	Travel terms and concepts
 ideas	Abstract ideas
 wikipedia	Wikipedia core topics
 sex	Sex-related words
