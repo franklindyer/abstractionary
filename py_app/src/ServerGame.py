@@ -174,7 +174,11 @@ class ServerGame:
         return game_state
 
     def receive_chat(self, id, chat_msg):
-        if id == self.active_player():
+        chat_msg = chat_msg.strip()
+        if len(chat_msg) == 0:
+            # Ignore whitespace-only messages
+            return
+        elif id == self.active_player():
             chat_msg = chat_msg[:DESC_LENGTH_LIMIT]
             self.words_used_in_round = self.words_used_in_round + len(chat_msg.split(' '))
             self.add_chat("HINT", self.players[id].name, self.tf.filter(chat_msg))
@@ -188,6 +192,5 @@ class ServerGame:
             self.add_chat("WIN", "", win_msg)
             self.save_history(chat_msg.lower())
             self.next_player()
-            # print(f"Player {id} has guessed the word.")
         else:
             self.add_chat("MSG", self.players[id].name, chat_msg)
