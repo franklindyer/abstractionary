@@ -22,8 +22,8 @@ generator_map = make_generator_map(con)
 list_titles = db_topic_titles(con)
 wr = WordRanker(con)
 
-MAX_GAMES = 50
-MAX_PLAYERS_PER_GAME = 6
+MAX_GAMES = int(os.environ.get("MAX_GAMES")) or 50
+MAX_PLAYERS_PER_GAME = int(os.environ.get("MAX_PLAYERS_PER_GAME")) or 6
 
 class AbsServiceManager:
     def __init__(self):

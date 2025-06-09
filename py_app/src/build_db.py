@@ -27,7 +27,7 @@ for ln in topics:
 ## Get English frequency list and add words with their ranks
 en_words = [ln.strip() for ln in open("./data/frequency/en.txt").readlines() if len(ln) > 1]
 for i in range(len(en_words)):
-    w = en_stem.stemWord(en_words[i])
+    w = en_words[i]
     cur.execute("INSERT INTO freqs (lemma, rank) VALUES (?, ?)", (w, i+1,))
 
 ## Get nonsense words and add to database
