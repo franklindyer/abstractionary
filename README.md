@@ -6,6 +6,8 @@
 
 **Abstractionary** is an open-source game in which you have to try and explain complex ideas using very simple words. Partially inspired by Pictionary, Caveman Poetry and Taboo. 
 
+[Play Abstractionary now](https://abstract.narfnilk.com) on a public server.
+
 Each round, one player is chosen as The Illiterate. They must pick a target phrase, and try to describe the target phrase to the other players using only the *most frequent* words in the English language. (The difficulty level of the game controls *how many* of the most frequent English words are allowed.) Any words that aren't among the most frequent will be replaced with gobbledygook. Once another player guesses the target word, the round has been won! 
 
 Here's what a typical round looks like:

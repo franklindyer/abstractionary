@@ -1,6 +1,7 @@
 body {
     font-family: Bodoni;
     background-image: url("/static/wallpaper.png");
+    text-align: center;
     // background-size: cover; 
 }
 
@@ -12,6 +13,7 @@ body {
     padding: 10px;
     background-color: white;
     border-radius: 10px;
+    text-align: left;
 }
 
 #main-logo {
@@ -26,6 +28,25 @@ body {
     background-color: white;
     border-radius: 10px;
     padding: 10px;
+    text-align: left;
+}
+
+#check-out-github-div {
+    padding: 5px;
+    margin-top: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: white;
+    border-radius: 10px;
+    display: inline-block;
+    text-align: center;
+}
+
+#github-icon {
+    width: 20px;
+    display: block;
+    float: left;
+    margin-right: 5px;
 }
 
 #play-game-div {
@@ -36,6 +57,7 @@ body {
     padding: 10px;
     background-color: white; 
     border-radius: 10px;
+    text-align: left;
 }
 
 .player-hint-box {
@@ -44,6 +66,7 @@ body {
     font-family: Menlo;
     font-size: 16px;
     height: 100px;
+    text-align: left;
 }
 
 #player-help {
