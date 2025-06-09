@@ -4,12 +4,11 @@ import random
 import string
 from threading import Lock
 
-DESC_LENGTH_LIMIT = 10000
-NAME_LENGTH_LIMIT = 10
-CHAT_LENGTH_LIMIT = 100
-CHAT_LIMIT = 50
-
-INACTIVITY_LIMIT_SECONDS = 60
+DESC_LENGTH_LIMIT = int(os.environ.get("DESC_LENGTH_LIMIT")) or 10000
+NAME_LENGTH_LIMIT = int(os.environ.get("NAME_LENGTH_LIMIT")) or 10
+CHAT_LENGTH_LIMIT = int(os.environ.get("CHAT_LENGTH_LIMIT")) or 100
+CHAT_LIMIT = int(os.environ.get("CHAT_LIMIT")) or 50
+INACTIVITY_LIMIT_SECONDS = int(os.environ.get("INACTIVITY_LIMIT_SECONDS")) or 60
 
 def rand_string(n):
     return ''.join(random.choice(string.ascii_uppercase + string.digits) for _ in range(n))
@@ -193,4 +192,4 @@ class ServerGame:
             self.save_history(chat_msg.lower())
             self.next_player()
         else:
-            self.add_chat("MSG", self.players[id].name, chat_msg)
+            self.add_chat("MSG", self.players[id].name, chat_msg[:CHAT_LENGTH_LIMIT])

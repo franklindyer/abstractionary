@@ -29,6 +29,16 @@ If you want to use your own custom target word lists, that's pretty easy too! Ju
 5. Go into `py_app` and run `./build_db`.
 6. Run the app as you normally would!
 
+If you want to further configure the server, you can set the following environment variables:
+
+- `MAX_GAMES`: the maximum number of active games at any time
+- `MAX_PLAYERS_PER_GAME`: the maximum number of players in any particular game
+- `DESC_LENGTH_LIMIT`: the cutoff in the length of The Illiterate's text description in chat
+- `NAME_LENGTH_LIMIT`: the limit in the length of players' nicknames
+- `CHAT_LENGTH_LIMIT`: the length limit of an ordinary player's chat message
+- `CHAT_LIMIT`: the limit on the number of messages in the chat at any time
+- `INACTIVITY_LIMIT_SECONDS`: the number of seconds that a player can be inactive before being kicked
+
 ## Credits
 
 Code written solely by myself (Franklin Pezzuti Dyer). Thanks to Althea Denlinger, Alex Adams and Ada Pezzuti Dyer for helping me test the game.
