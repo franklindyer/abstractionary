@@ -1,6 +1,7 @@
 from datetime import datetime
 import os
 import random
+import re
 import string
 from threading import Lock
 
@@ -134,6 +135,8 @@ class ServerGame:
         self.tf.wt.reset()
 
     def guess_word(self, player_id, guess_word):
+        # Normalize guess word to allow slight variations to be marked as correct
+        guess_word = re.sub(r' +', ' ', guess_word.lower().strip())
         if (player_id != self.active_player()) and \
             (player_id in self.players.keys()) and \
             (guess_word in self.target_words):
