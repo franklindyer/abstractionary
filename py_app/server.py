@@ -39,6 +39,7 @@ class AbsServiceManager:
         return ServerGame(text_filter, word_generator)
 
     def add_game(self, category_list, difficulty, public=False):
+        self.purge_games()
         with self.lock:
             if len(self.game_map.keys()) >= MAX_GAMES:
                 return None
@@ -69,6 +70,7 @@ class AbsServiceManager:
         return player_id
 
     def get_public_games(self):
+        self.purge_games()
         return self.public_games
 
     def purge_games(self):
@@ -77,6 +79,7 @@ class AbsServiceManager:
             game_ids = [k for k in self.game_map.keys()]
             for k in game_ids:
                 game = self.game_map[k]
+                game.clean_inactive_players()
                 if len(game.player_list) == 0:
                     deleted_ids = deleted_ids + [game.id]
                     del self.game_map[k]
@@ -116,7 +119,6 @@ def serve_file(path):
 
 @app.route('/newgame')
 def serve_new_game():
-    sm.purge_games()
     response = make_response(redirect('/game'))
     query_args = request.args.to_dict()
     categories = [k for k in query_args.keys() if k in generator_map.keys()]
